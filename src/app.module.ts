@@ -34,7 +34,7 @@ import { AtGuard } from './common/guards';
         synchronize: true,
         autoLoadModels: true,
         sync: {
-          // alter: true,
+          alter: true,
           // force: true,
         },
         models: [],

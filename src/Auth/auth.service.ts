@@ -9,6 +9,7 @@ import { CreateAdminDto } from "src/admins/dto/create-admin.dto";
 import { SignInDTo } from "./dtos/sign-in.dto";
 import { UpdateAdminDto } from "src/admins/dto/update-admin.dto";
 import { changePassDto } from "src/admins/dto/change-pass.dto";
+import { CreateDataEntrantDto } from "src/data-entrants/dto/create-data-entrant.dto";
 
 @Injectable()
 export class AuthService{
@@ -165,7 +166,7 @@ export class AuthService{
 
 
 
-    async signupEntrant(body: CreateAdminDto ): Promise<Tokens>{
+    async signupEntrant(body: CreateDataEntrantDto ): Promise<Tokens>{
         const admin = await this.dataEntrantService.findByEmail(body.email)
         if(admin){
             throw new BadRequestException("Email in Use")
@@ -175,7 +176,8 @@ export class AuthService{
         const createduser = await this.dataEntrantService.create({
             username : body.username,
             password: hashedpass,
-            email:body.email
+            email:body.email,
+            clinicId: body.clinicId
         })
         const tokens = await this.getTokens(createduser.newDataEntrant.id, createduser.newDataEntrant.email )
         await this.updateRtHashEntrant(createduser.newDataEntrant.id, tokens.rt)

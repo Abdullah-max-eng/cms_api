@@ -1,4 +1,4 @@
-import { IsEmail, IsString, IsStrongPassword } from "class-validator";
+import { IsEmail, IsNumber, IsString, IsStrongPassword } from "class-validator";
 
 
 
@@ -27,6 +27,11 @@ export class CreateDataEntrantDto {
     @IsEmail()
     @IsString()
     email: string
+
+
+
+    @IsNumber()
+    clinicId: number
 
 
 

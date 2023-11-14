@@ -19,11 +19,13 @@ export class DataEntrantsService {
     const username =  body.username
     const password = body.password
     const email = body.email
+    const cID = body.clinicId
 
     const newDataEntrant = await this.DataEntrantModel.create({
       username : username,
       password: password,
-      email:email
+      email:email,
+      clinicId: cID
       })
       return {
         "status ": "New Data Entrant Created",
@@ -97,6 +99,7 @@ export class DataEntrantsService {
       username: body.username,
       email: body.email,
       password: body.password,
+      clinicId: body.clinicId,
       Hashedrt: body.Hashedrt
     })
     return {status: "true", dataEntrant};
