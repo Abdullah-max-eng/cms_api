@@ -1,5 +1,10 @@
 import { Column, Model, Scopes, Table} from "sequelize-typescript";
 
+@Scopes(()=>({
+    findOne: (id:number) => ({where:{id:id}}),
+    passExcluded: { attributes: { exclude: ["password", "Hashedrt"] } },
+    
+}))
 
 
 @Table

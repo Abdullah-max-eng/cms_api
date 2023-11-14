@@ -7,6 +7,8 @@ import { AdminsModule } from './admins/admins.module';
 import { CitiesModule } from './cities/cities.module';
 import { ClinicsModule } from './clinics/clinics.module';
 import { DataEntrantsModule } from './data-entrants/data-entrants.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AtGuard } from './common/guards';
 
 @Module({
   imports: [
@@ -32,8 +34,8 @@ import { DataEntrantsModule } from './data-entrants/data-entrants.module';
         synchronize: true,
         autoLoadModels: true,
         sync: {
-          alter: true,
-          force: true,
+          // alter: true,
+          // force: true,
         },
         models: [],
       }),
@@ -45,23 +47,8 @@ import { DataEntrantsModule } from './data-entrants/data-entrants.module';
 
 
     AdminsModule,
-
-
-
-
-
     CitiesModule,
-
-
-
-
-
     ClinicsModule,
-
-
-
-
-
     DataEntrantsModule,
 
 
@@ -78,6 +65,9 @@ import { DataEntrantsModule } from './data-entrants/data-entrants.module';
 
   
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,    {
+    provide: APP_GUARD,
+    useClass: AtGuard
+    },],
 })
 export class AppModule {}

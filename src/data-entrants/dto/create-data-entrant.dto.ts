@@ -16,7 +16,7 @@ export class CreateDataEntrantDto {
 
 
     
-    @IsStrongPassword()
+    // @IsStrongPassword()
     @IsString()
     password: string
 

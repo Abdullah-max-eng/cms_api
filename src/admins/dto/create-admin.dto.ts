@@ -16,7 +16,7 @@ export class CreateAdminDto {
 
 
     
-    @IsStrongPassword()
+    // @IsStrongPassword()
     @IsString()
     password: string
 
