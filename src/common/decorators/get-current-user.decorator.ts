@@ -5,7 +5,6 @@ export const  GetCurrentUser = createParamDecorator(
         const request = context.switchToHttp().getRequest()
         if(!data){
             return request.user;}
-        console.log("Refresh cookies ", request.user[data])
         return request.user[data]
     }, 
 );   

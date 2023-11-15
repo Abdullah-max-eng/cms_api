@@ -10,7 +10,7 @@ import { SignInDTo } from "./dtos/sign-in.dto";
 import { UpdateAdminDto } from "src/admins/dto/update-admin.dto";
 import { changePassDto } from "src/admins/dto/change-pass.dto";
 import { CreateDataEntrantDto } from "src/data-entrants/dto/create-data-entrant.dto";
-
+import getTokens from "assests/generateToken";
 @Injectable()
 export class AuthService{
 
@@ -42,7 +42,7 @@ export class AuthService{
             password: hashedpass,
             email:body.email
         })
-        const tokens = await this.getTokens(createduser.newUser.id, createduser.newUser.email )
+        const tokens = await getTokens(this.jwtService,createduser.newUser.id, createduser.newUser.email )
         await this.updateRtHashAdmin(createduser.newUser.id, tokens.rt)
         return {access_token: tokens.at, refresh_token:tokens.rt}
 
@@ -59,7 +59,7 @@ export class AuthService{
         const matched = await this.compareHashes(body.password,user.password) //(password given by user, hashed pass saved in db)
         
         if(matched){
-            const tokens = await this.getTokens(user.id, user.email )
+            const tokens = await getTokens(this.jwtService,user.id, user.email )
             await this.updateRtHashAdmin(user.id, tokens.rt)
             return {access_token: tokens.at, refresh_token:tokens.rt}
        
@@ -90,7 +90,7 @@ export class AuthService{
           throw new ForbiddenException("Access Denied!");
         }
     
-        const tokens = await this.getTokens(user.id, user.email);
+        const tokens = await getTokens(this.jwtService,user.id, user.email);
         await this.updateRtHashAdmin(user.id, tokens.rt);
         return tokens;
       }
@@ -179,7 +179,7 @@ export class AuthService{
             email:body.email,
             clinicId: body.clinicId
         })
-        const tokens = await this.getTokens(createduser.newDataEntrant.id, createduser.newDataEntrant.email )
+        const tokens = await getTokens(this.jwtService,createduser.newDataEntrant.id, createduser.newDataEntrant.email )
         await this.updateRtHashEntrant(createduser.newDataEntrant.id, tokens.rt)
         return {access_token: tokens.at, refresh_token:tokens.rt}
 
@@ -196,7 +196,7 @@ export class AuthService{
         const matched = await this.compareHashes(body.password,user.password) //(password given by user, hashed pass saved in db)
         
         if(matched){
-            const tokens = await this.getTokens(user.id, user.email )
+            const tokens = await getTokens(this.jwtService,user.id, user.email )
             await this.updateRtHashEntrant(user.id, tokens.rt)
             return {access_token: tokens.at, refresh_token:tokens.rt}
        
@@ -222,7 +222,6 @@ export class AuthService{
 
 
     async refreshEntrant(userId: number, rt: string) {
-        console.log(userId,rt)
         const user = await this.dataEntrantService.getOne(userId);
         if (!user || !user.Hashedrt) {
           throw new NotFoundException("User not found!");
@@ -233,7 +232,7 @@ export class AuthService{
           throw new ForbiddenException("Access Denied!");
         }
     
-        const tokens = await this.getTokens(user.id, user.email);
+        const tokens = await getTokens(this.jwtService,user.id, user.email);
         await this.updateRtHashEntrant(user.id, tokens.rt);
         return tokens;
       }
@@ -317,41 +316,20 @@ export class AuthService{
         return await bcrypt.hashSync(input, salt);
     }
 
+
+
     async compareHashes(rawpass: string, hash: string) {
         return await bcrypt.compare(rawpass,hash)
     }
 
-   // Function for generating tokens
-    async getTokens(userid: number, email:string){
-        const [at, rt] = await Promise.all([
-            this.jwtService.signAsync(
-                {
-                sub: userid,
-                email: email,
-                },
-                {
-                    secret: process.env.AT_SECRET,
-                    expiresIn: 60 * 60 * 15 // Expires in 15 mins
-                }
-            ),
 
-            this.jwtService.signAsync(
-                {
-                sub: userid,
-                email: email,
-                },
-                {   
-                    secret: process.env.RT_SECRET,
-                    expiresIn: 60 * 60 * 24 * 10
-                }
-            )
-        ])
 
-        return{
-             at,
-             rt
-        }
-    }
+
+
+
+
+
+
 
 
 
