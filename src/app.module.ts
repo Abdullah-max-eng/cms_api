@@ -9,6 +9,10 @@ import { ClinicsModule } from './clinics/clinics.module';
 import { DataEntrantsModule } from './data-entrants/data-entrants.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from './common/guards';
+import { DrugsModule } from './drugs/drugs.module';
+import { VaccinesModule } from './vaccines/vaccines.module';
+import { MedicationModule } from './medication/medication.module';
+import { VaccinesHistoryModule } from './vaccines-history/vaccines-history.module';
 
 @Module({
   imports: [
@@ -50,6 +54,10 @@ import { AtGuard } from './common/guards';
     CitiesModule,
     ClinicsModule,
     DataEntrantsModule,
+    DrugsModule,
+    VaccinesModule,
+    MedicationModule,
+    VaccinesHistoryModule,
 
 
 
