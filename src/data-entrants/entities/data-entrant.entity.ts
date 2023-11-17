@@ -1,5 +1,6 @@
-import { BelongsTo, Column, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, HasMany, Model, Scopes, Table} from "sequelize-typescript";
 import { Clinic } from "src/clinics/entities/clinic.entity";
+import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
 
 
 
@@ -43,6 +44,22 @@ export class DataEntrant extends Model {
 
     @BelongsTo(() => Clinic)
     clinic: Clinic;
+
+
+
+
+    @HasMany(() => ReproductivePatient)
+    RegisteredPatients: ReproductivePatient[];
+
+
+    // For two other types of patients
+
+    // @HasMany(() => ReproductivePatient)
+    // RegisteredPatients: ReproductivePatient[];
+
+
+    // @HasMany(() => ReproductivePatient)
+    // RegisteredPatients: ReproductivePatient[];
 
 
 

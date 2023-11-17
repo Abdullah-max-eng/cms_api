@@ -1,0 +1,180 @@
+import { Model, Column, Table, ForeignKey, HasOne, BelongsTo, HasMany, DataType } from "sequelize-typescript";
+import { AgeGroup } from "src/age-group/entities/age-group.entity";
+import { Clinic } from "src/clinics/entities/clinic.entity";
+import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
+import { Fee } from "src/fees/entities/fee.entity";
+import { Medication } from "src/medication/entities/medication.entity";
+import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.entity";
+import { Refferal } from "src/refferals/entities/refferal.entity";
+import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
+
+
+@Table
+export class ReproductivePatient extends Model {
+
+
+        @Column({allowNull:false})
+        nationality: string
+
+
+        @Column({allowNull:false})
+        visitDate: string
+
+
+        @Column({allowNull:false})
+        name: string
+
+        @Column({allowNull:false})
+        address: string
+
+
+        @Column({allowNull:false})
+        DOB: string
+
+
+        @Column({allowNull:false})
+        Height: string
+
+        
+        @Column({allowNull:false})
+        Heightsq: string
+
+
+        @Column({allowNull:false})
+        Weight:  string
+
+
+        @Column({allowNull:false})
+        BMI:  string
+
+
+        
+        @Column({allowNull:false})
+        MaritalStatus:  string
+
+
+        @Column({allowNull:false})
+        NumberOfChildrebt:  number
+
+
+        @Column({allowNull:false})
+        PreviouseAbortions:  number
+
+
+        @Column({allowNull:false})
+        DateOfLastBirth:  string
+
+
+        @Column({allowNull:false})
+        NormalBirthStatus:  boolean
+
+
+        @Column({allowNull:false})
+        DateOfLastMenstruation:  string
+
+
+
+
+        @Column({allowNull:false})
+        contraceptives:string
+
+
+
+        @Column({allowNull:false})
+        IronInspection: string
+
+
+
+
+        @Column({allowNull:false})
+          DiabetesScreening: string
+
+
+
+          @Column({allowNull:false})
+          BloodPressure: string
+
+
+
+          @Column({allowNull:false})
+          physicianName: string
+
+
+          
+          @Column({allowNull:false})
+          servicesIntroduction: string;
+          
+
+
+
+
+            // This should be a foreign key
+            @ForeignKey(() => AgeGroup)
+            @Column({ allowNull: false })
+            ageGroupID: number;
+            @BelongsTo(() => AgeGroup)
+            ageGroup: AgeGroup;
+
+
+
+
+
+            @ForeignKey(() => ReasonToVisit)
+            @Column({ allowNull: false })
+            VisitReasonID: number;
+            @BelongsTo(() => ReasonToVisit)
+            VisitReason: ReasonToVisit;
+
+
+
+
+            @ForeignKey(() => Clinic)
+            @Column({ allowNull: false })
+            clinicID: number;
+            @BelongsTo(() => Clinic)
+            clinic: Clinic;
+
+
+
+
+
+            @ForeignKey(() => DataEntrant)
+            @Column({ allowNull: false })
+            DataEntrantID: number;
+            @BelongsTo(() => DataEntrant)
+            DataEntrant: DataEntrant;
+
+
+
+
+
+            @HasMany(() => VaccinesHistory)
+            vaccinationRecords: VaccinesHistory[];
+          
+
+            @HasMany(() => Medication)
+            medicationRecords: Medication[];
+
+
+            @HasMany(() => Fee)
+            Fees: Fee[];
+
+
+
+            
+
+
+
+
+            @ForeignKey(() => Refferal)
+            @Column({ allowNull: false })
+            RefferalID: number;
+            @BelongsTo(() => Refferal)
+            refferal: Refferal;
+
+
+
+
+
+
+}

@@ -25,7 +25,7 @@ export class DataEntrantsController {
 
 
 
-  @Public(true)
+  @Public(false)
   @Post('/signup')
   @HttpCode(HttpStatus.CREATED)
   create(@Body() body: CreateDataEntrantDto): Promise<Tokens> {

@@ -15,6 +15,7 @@ export class MedicationService {
     const starteDate = body.startDate;
     const EndDate = body.endDate;
     const DrugId = body.drugID;
+    const ReproductivePatientID = body.ReproductivePatientID;
 
 
     try {
@@ -22,6 +23,7 @@ export class MedicationService {
         startDate: starteDate,
         endDate:  EndDate,
         drugID: DrugId,
+        ReproductivePatientID: ReproductivePatientID
 
       });
       return createMdeciationRecord;
@@ -76,6 +78,7 @@ export class MedicationService {
           startDate: body.startDate,
           endDate:  body.endDate,
           drugID: body.drugID,
+          ReproductivePatientID: body.ReproductivePatientID
 
         })
       return {status: true, updatedOne}

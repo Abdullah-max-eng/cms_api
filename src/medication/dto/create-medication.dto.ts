@@ -12,4 +12,9 @@ export class CreateMediccationDto {
   @IsNotEmpty()
   @IsNumber()
   drugID: number;
+
+
+  @IsNotEmpty()
+  @IsNumber()
+  ReproductivePatientID: number;
 }

@@ -3,6 +3,7 @@ import { IsOptional } from "class-validator";
 import { Table, Column, Model, NotNull, AllowNull, ForeignKey, BelongsTo, HasMany, Scopes } from "sequelize-typescript";
 import { City } from "src/cities/entities/city.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
+import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
 
 
 
@@ -38,12 +39,27 @@ export class Clinic extends Model {
 
 
 
+    @IsOptional()
+    @HasMany(()=> DataEntrant)
+    DataEntrants: DataEntrant[];
+
 
 
 
     @IsOptional()
-    @HasMany(()=> DataEntrant)
-    DataEntrants: DataEntrant[];
+    @HasMany(() => ReproductivePatient)
+    ReproductivePatient: ReproductivePatient[];
+
+
+    //For Children
+    // @IsOptional()
+    // @HasMany(() => ReproductivePatient)
+    // ReproductivePatient: ReproductivePatient[];
+
+    //For Public health
+    // @IsOptional()
+    // @HasMany(() => ReproductivePatient)
+    // ReproductivePatient: ReproductivePatient[];
 
 
 

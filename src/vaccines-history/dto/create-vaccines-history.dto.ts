@@ -24,6 +24,10 @@ export class CreateVaccinesHistoryDto {
         vaccineId: number;
 
 
+        @IsNotEmpty()
+        @IsNumber()
+        ReproductivePatientID: number
+
 
 
 }

@@ -13,6 +13,13 @@ import { DrugsModule } from './drugs/drugs.module';
 import { VaccinesModule } from './vaccines/vaccines.module';
 import { MedicationModule } from './medication/medication.module';
 import { VaccinesHistoryModule } from './vaccines-history/vaccines-history.module';
+import { ReproductivePatientsModule } from './reproductive-patients/reproductive-patients.module';
+import { PublicPatientsModule } from './public-patients/public-patients.module';
+import { ChildrenPatientsModule } from './children-patients/children-patients.module';
+import { AgeGroupModule } from './age-group/age-group.module';
+import { ReasonToVisitModule } from './reason-to-visit/reason-to-visit.module';
+import { RefferalsModule } from './refferals/refferals.module';
+import { FeesModule } from './fees/fees.module';
 
 @Module({
   imports: [
@@ -38,7 +45,7 @@ import { VaccinesHistoryModule } from './vaccines-history/vaccines-history.modul
         synchronize: true,
         autoLoadModels: true,
         sync: {
-          alter: true,
+          // alter: true,
           // force: true,
         },
         models: [],
@@ -58,6 +65,13 @@ import { VaccinesHistoryModule } from './vaccines-history/vaccines-history.modul
     VaccinesModule,
     MedicationModule,
     VaccinesHistoryModule,
+    ReproductivePatientsModule,
+    PublicPatientsModule,
+    ChildrenPatientsModule,
+    AgeGroupModule,
+    ReasonToVisitModule,
+    RefferalsModule,
+    FeesModule,
 
 
 
@@ -73,9 +87,13 @@ import { VaccinesHistoryModule } from './vaccines-history/vaccines-history.modul
 
   
   controllers: [AppController],
-  providers: [AppService,    {
+  providers: [AppService,    
+    {
     provide: APP_GUARD,
-    useClass: AtGuard
-    },],
+    useClass: AtGuard,
+    
+    },
+  
+  ],
 })
 export class AppModule {}
