@@ -12,11 +12,12 @@ import { GetCurrentUserID } from 'src/common/decorators/get-current-user.id.deco
 import { AtGuard, RtGuard } from 'src/common/guards';
 import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
 import { changePassDto } from './dto/change-pass.dto';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 
 
-
-
+@ApiTags('Admins')
+@ApiBearerAuth()
 @Controller('admins')
 export class AdminsController {
  
@@ -32,6 +33,12 @@ export class AdminsController {
         @Public(true)
         @Post('/signup')
         @HttpCode(HttpStatus.CREATED)
+        @ApiCreatedResponse({
+          description: "Gives tokens as a response"
+        })
+        @ApiBadRequestResponse({
+          description: "Try Again, DTO failed to match"
+        })
         create(@Body() body: CreateAdminDto): Promise<Tokens> {
           return this.authService.signupAdmin(body);
         }
