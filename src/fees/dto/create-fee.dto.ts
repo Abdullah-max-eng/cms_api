@@ -13,7 +13,13 @@ export class CreateFeeDto {
   @IsString()
   PaymentDate: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
-  ReproductivePatientID: number;
+  ReproductivePatientID?: number;
+
+
+  @IsOptional()
+  @IsNumber()
+  PublicPatientID?: number;
+
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsBoolean, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsBoolean, IsString, IsOptional } from 'class-validator';
 
 
 export class CreateVaccinesHistoryDto {
@@ -24,9 +24,14 @@ export class CreateVaccinesHistoryDto {
         vaccineId: number;
 
 
-        @IsNotEmpty()
+        @IsOptional()
         @IsNumber()
-        ReproductivePatientID: number
+        ReproductivePatientID?: number
+
+
+        @IsOptional()
+        @IsNumber()
+        PublicPatientID?: number;
 
 
 

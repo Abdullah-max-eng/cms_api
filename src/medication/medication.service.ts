@@ -3,6 +3,7 @@ import { CreateMediccationDto } from './dto/create-medication.dto';
 import { UpdateMedicationDto } from './dto/update-medication.dto';
 import { Medication } from './entities/medication.entity';
 import { InjectModel } from '@nestjs/sequelize';
+import { PublicPatient } from 'src/public-patients/entities/public-patient.entity';
 @Injectable()
 export class MedicationService {
 
@@ -16,14 +17,15 @@ export class MedicationService {
     const EndDate = body.endDate;
     const DrugId = body.drugID;
     const ReproductivePatientID = body.ReproductivePatientID;
-
+    let publicPatiendID = body.PublicPatientID;
 
     try {
       const createMdeciationRecord = await this.MedicaitonModel.create({
         startDate: starteDate,
         endDate:  EndDate,
         drugID: DrugId,
-        ReproductivePatientID: ReproductivePatientID
+        ReproductivePatientID: ReproductivePatientID,
+        publicPatiendID: publicPatiendID
 
       });
       return createMdeciationRecord;
@@ -73,12 +75,15 @@ export class MedicationService {
 
 
   async update(id: number, body: UpdateMedicationDto) {
+        let publicPatiendID = body.PublicPatientID; 
+
         const getRecord = await this.findOne(id)
         const updatedOne = await getRecord.update({
           startDate: body.startDate,
           endDate:  body.endDate,
           drugID: body.drugID,
-          ReproductivePatientID: body.ReproductivePatientID
+          ReproductivePatientID: body.ReproductivePatientID,
+          publicPatiendID: publicPatiendID
 
         })
       return {status: true, updatedOne}

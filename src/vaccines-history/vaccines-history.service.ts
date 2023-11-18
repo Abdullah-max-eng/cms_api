@@ -18,7 +18,7 @@ export class VaccinesHistoryService {
       const comments = body.comments;
       const vaccineID = body.vaccineId;
       const ReproductivePatientID = body.ReproductivePatientID
-      // const PublicPatientID = body.PublicPatientID
+      const PublicPatientID = body.PublicPatientID
       // const ChildrenPatientID = body.ChildrentPatientID
 
       try {
@@ -28,7 +28,8 @@ export class VaccinesHistoryService {
           vaccinationStatus: status,
           comments: comments,
           vaccineId: vaccineID,
-          ReproductivePatientID:  ReproductivePatientID
+          ReproductivePatientID:  ReproductivePatientID,
+          PublicPatientID: PublicPatientID
         });
         
         return createdVaccineRecord;
@@ -76,7 +77,8 @@ export class VaccinesHistoryService {
         vaccinationStatus: body.vaccinationStatus,
         comments: body.comments,
         vaccineId: body.vaccineId,
-        ReproductivePatientID:  body.ReproductivePatientID
+        ReproductivePatientID:  body.ReproductivePatientID,
+        PublicPatientID: body.PublicPatientID
 
       })
     return {status: true, updatedOne}

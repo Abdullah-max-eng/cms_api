@@ -17,4 +17,11 @@ export class CreateMediccationDto {
   @IsNotEmpty()
   @IsNumber()
   ReproductivePatientID: number;
+
+  
+  @IsOptional()
+  @IsNumber()
+  PublicPatientID?: number;
+
+  
 }

@@ -1,4 +1,5 @@
 import { Table, Column, ForeignKey, Model, BelongsTo, Scopes } from "sequelize-typescript";
+import { PublicPatient } from "src/public-patients/entities/public-patient.entity";
 import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
 import { Vaccine } from "src/vaccines/entities/vaccine.entity";
 
@@ -48,30 +49,29 @@ export class VaccinesHistory extends Model {
 
 
 
-
-
-
-
     // Different Thype os patients
 
     @ForeignKey(() => ReproductivePatient)
-    @Column({ allowNull: false })
+    @Column({ allowNull: true })
     ReproductivePatientID: number;
     @BelongsTo(() => ReproductivePatient)
     ReproductivePatient: ReproductivePatient;
 
 
 
+    @ForeignKey(() => PublicPatient)
+    @Column({ allowNull: true })
+    PublicPatientID: number;
+    @BelongsTo(() => PublicPatient)
+    PublicPatient: PublicPatient;
 
 
 
 
 
-    // @ForeignKey(() => Drug)
-    // @Column({ allowNull: false })
-    // drugID: number;
-    // @BelongsTo(() => Drug)
-    // drug: Drug;
+
+
+
 
 
 

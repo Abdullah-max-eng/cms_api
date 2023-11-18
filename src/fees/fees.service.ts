@@ -15,13 +15,15 @@ export class FeesService {
     const PaymentDate = body.PaymentDate;
     const ReproductivePatientID = body.ReproductivePatientID;
     const collectedFee = body.collectedFee;
+    const publicPatiendID = body.PublicPatientID;
+
     try {
       const created = await this.FeeModel.create({
         PayableFee: PayableFee,
         collectedFee: collectedFee,
         PaymentDate: PaymentDate,
         ReproductivePatientID: ReproductivePatientID,
-
+        PublicPatientID: publicPatiendID
     
       });
       return created;
@@ -67,6 +69,7 @@ export class FeesService {
       collectedFee: body.collectedFee,
       PaymentDate: body.PaymentDate,
       ReproductivePatientID: body.ReproductivePatientID,
+      PublicPatientID: body.PublicPatientID
     })
   return {status: true, updatedOne}  
   }

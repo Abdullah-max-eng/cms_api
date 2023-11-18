@@ -1,4 +1,5 @@
 import { Model, Table, Column, BelongsTo, ForeignKey, Default } from "sequelize-typescript";
+import { PublicPatient } from "src/public-patients/entities/public-patient.entity";
 import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
 
 @Table
@@ -27,7 +28,7 @@ export class Fee extends Model {
 
 
   @ForeignKey(() => ReproductivePatient)
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   ReproductivePatientID: number;
   @BelongsTo(() => ReproductivePatient)
   reproductivePatient: ReproductivePatient;
@@ -36,11 +37,19 @@ export class Fee extends Model {
 
 
 // Public Health Patients
-//   @ForeignKey(() => ReproductivePatient)
-//   @Column({ allowNull: false })
-//   ReproductivePatientID: number;
-//   @BelongsTo(() => ReproductivePatient)
-//   reproductivePatient: ReproductivePatient;
+  @ForeignKey(() => PublicPatient)
+  @Column({ allowNull: true })
+  PublicPatientID: number;
+  @BelongsTo(() => PublicPatient)
+  PublicPatient: PublicPatient;
+
+
+
+
+
+
+  
+
 
 
 
