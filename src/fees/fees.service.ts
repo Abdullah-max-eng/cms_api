@@ -13,17 +13,22 @@ export class FeesService {
   async create(body: CreateFeeDto) {
     const PayableFee = body.PayableFee;
     const PaymentDate = body.PaymentDate;
-    const ReproductivePatientID = body.ReproductivePatientID;
     const collectedFee = body.collectedFee;
+    
+    const ReproductivePatientID = body.ReproductivePatientID;
     const publicPatiendID = body.PublicPatientID;
+    const ChildPatientID= body.ChildrenPatientID;
 
     try {
       const created = await this.FeeModel.create({
         PayableFee: PayableFee,
         collectedFee: collectedFee,
         PaymentDate: PaymentDate,
+
+
         ReproductivePatientID: ReproductivePatientID,
-        PublicPatientID: publicPatiendID
+        PublicPatientID: publicPatiendID,
+        ChildrenPatientID: ChildPatientID
     
       });
       return created;
@@ -68,8 +73,12 @@ export class FeesService {
       PayableFee: body.PayableFee,
       collectedFee: body.collectedFee,
       PaymentDate: body.PaymentDate,
+
+
+      
       ReproductivePatientID: body.ReproductivePatientID,
-      PublicPatientID: body.PublicPatientID
+      PublicPatientID: body.PublicPatientID,
+      ChildrenPatientID: body.ChildrenPatientID,
     })
   return {status: true, updatedOne}  
   }

@@ -2,7 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PublicPatientsService } from './public-patients.service';
 import { CreatePublicPatientDto } from './dto/create-public-patient.dto';
 import { UpdatePublicPatientDto } from './dto/update-public-patient.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+
+
+@ApiTags('Public Patients')
+@ApiBearerAuth()
 @Controller('public-patients')
 export class PublicPatientsController {
   constructor(private readonly publicPatientsService: PublicPatientsService) {}

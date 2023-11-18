@@ -2,7 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { FeesService } from './fees.service';
 import { CreateFeeDto } from './dto/create-fee.dto';
 import { UpdateFeeDto } from './dto/update-fee.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+
+
+@ApiTags("Patients fee Recrods")
+@ApiBearerAuth()
 @Controller('fees')
 export class FeesController {
   constructor(private readonly feesService: FeesService) {}

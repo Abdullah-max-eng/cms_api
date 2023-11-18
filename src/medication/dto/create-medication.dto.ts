@@ -14,14 +14,27 @@ export class CreateMediccationDto {
   drugID: number;
 
 
-  @IsNotEmpty()
+
+
+  
+
+  @IsOptional()
   @IsNumber()
-  ReproductivePatientID: number;
+  ReproductivePatientID?: number;
 
   
   @IsOptional()
   @IsNumber()
   PublicPatientID?: number;
+
+
+
+
+
+  @IsOptional()
+  @IsNumber()
+  ChildrenPatientID?: number;
+  
 
   
 }

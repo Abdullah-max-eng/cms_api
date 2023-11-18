@@ -16,16 +16,22 @@ export class MedicationService {
     const starteDate = body.startDate;
     const EndDate = body.endDate;
     const DrugId = body.drugID;
+
+
     const ReproductivePatientID = body.ReproductivePatientID;
-    let publicPatiendID = body.PublicPatientID;
+    const publicPatiendID = body.PublicPatientID;
+    const ChildrenPatientID = body.ChildrenPatientID;
 
     try {
       const createMdeciationRecord = await this.MedicaitonModel.create({
         startDate: starteDate,
         endDate:  EndDate,
         drugID: DrugId,
+
+
         ReproductivePatientID: ReproductivePatientID,
-        publicPatiendID: publicPatiendID
+        PublicPatientID: publicPatiendID,
+        ChildrenPatientID: ChildrenPatientID
 
       });
       return createMdeciationRecord;
@@ -33,7 +39,7 @@ export class MedicationService {
       if (error.name === 'SequelizeUniqueConstraintError') {
         throw new ConflictException('Drug with the given name already exists');
       }
-      throw new InternalServerErrorException('Failed to create drug');
+      throw new InternalServerErrorException('Failed to create record');
     }
   }
 
@@ -75,15 +81,18 @@ export class MedicationService {
 
 
   async update(id: number, body: UpdateMedicationDto) {
-        let publicPatiendID = body.PublicPatientID; 
-
         const getRecord = await this.findOne(id)
         const updatedOne = await getRecord.update({
           startDate: body.startDate,
           endDate:  body.endDate,
           drugID: body.drugID,
+
+
+
           ReproductivePatientID: body.ReproductivePatientID,
-          publicPatiendID: publicPatiendID
+          publicPatiendID: body.PublicPatientID ,
+          ChildrenPatientID: body.ChildrenPatientID
+          
 
         })
       return {status: true, updatedOne}

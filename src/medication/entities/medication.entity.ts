@@ -1,4 +1,5 @@
 import { Model, Table, Column, ForeignKey, BelongsTo, Scopes } from "sequelize-typescript";
+import { ChildrenPatient } from "src/children-patients/entities/children-patient.entity";
 import { Drug } from "src/drugs/entities/drug.entity";
 import { PublicPatient } from "src/public-patients/entities/public-patient.entity";
 import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
@@ -68,12 +69,11 @@ export class Medication extends Model {
 
 
 
-
-    // @ForeignKey(() => Drug)
-    // @Column({ allowNull: false })
-    // drugID: number;
-    // @BelongsTo(() => Drug)
-    // drug: Drug;
+    @ForeignKey(() => ChildrenPatient)
+    @Column({ allowNull: true })
+    ChildrenPatientID: number;
+    @BelongsTo(() => ChildrenPatient)
+    ChildrenPatient: ChildrenPatient;
 
 
 

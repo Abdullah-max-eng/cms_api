@@ -19,7 +19,7 @@ export class VaccinesHistoryService {
       const vaccineID = body.vaccineId;
       const ReproductivePatientID = body.ReproductivePatientID
       const PublicPatientID = body.PublicPatientID
-      // const ChildrenPatientID = body.ChildrentPatientID
+      const ChildrenPatientID = body.ChildrenPatientID
 
       try {
         const createdVaccineRecord = await this.VHModel.create({
@@ -28,8 +28,11 @@ export class VaccinesHistoryService {
           vaccinationStatus: status,
           comments: comments,
           vaccineId: vaccineID,
+
+
           ReproductivePatientID:  ReproductivePatientID,
-          PublicPatientID: PublicPatientID
+          PublicPatientID: PublicPatientID,
+          ChildrenPatientID:ChildrenPatientID
         });
         
         return createdVaccineRecord;
@@ -78,7 +81,8 @@ export class VaccinesHistoryService {
         comments: body.comments,
         vaccineId: body.vaccineId,
         ReproductivePatientID:  body.ReproductivePatientID,
-        PublicPatientID: body.PublicPatientID
+        PublicPatientID: body.PublicPatientID,
+        ChildrenPatientID: body.ChildrenPatientID
 
       })
     return {status: true, updatedOne}

@@ -1,19 +1,22 @@
-import { Model, Table, Column, BelongsTo, ForeignKey, Default } from "sequelize-typescript";
+import { Model, BeforeSave, Table, Column, BelongsTo, ForeignKey, Default } from "sequelize-typescript";
+import { ChildrenPatient } from "src/children-patients/entities/children-patient.entity";
 import { PublicPatient } from "src/public-patients/entities/public-patient.entity";
 import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
 
 @Table
 export class Fee extends Model {
+ 
+ 
   @Column({ allowNull: false })
   PayableFee: number;
 
   @Column({ allowNull: false })
   collectedFee: number;
 
+
+
   @Column({ allowNull: true })
-  get debtAmount(): number {
-    return this.PayableFee - this.collectedFee;
-  }
+  debtAmount: number;
 
 
 
@@ -48,16 +51,26 @@ export class Fee extends Model {
 
 
 
+  @ForeignKey(() => ChildrenPatient)
+  @Column({ allowNull: true })
+  ChildrenPatientID: number;
+  @BelongsTo(() => ChildrenPatient)
+  ChildrenPatient: ChildrenPatient;
+
+
+
   
 
+  @BeforeSave
+  static calculateDebtAmount(instance: Fee): void {
+    if (instance.PayableFee !== null && instance.collectedFee !== null) {
+      instance.debtAmount = instance.PayableFee - instance.collectedFee;
+    } else {
+      instance.debtAmount = null;
+    }
+  }
 
 
 
-// Children  Health Patients
-//   @ForeignKey(() => ReproductivePatient)
-//   @Column({ allowNull: false })
-//   ReproductivePatientID: number;
-//   @BelongsTo(() => ReproductivePatient)
-//   reproductivePatient: ReproductivePatient;
 
 }

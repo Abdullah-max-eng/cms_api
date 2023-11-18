@@ -35,6 +35,15 @@ export class CreateVaccinesHistoryDto {
 
 
 
+        
+        @IsOptional()
+        @IsNumber()
+        ChildrenPatientID?: number;
+
+        
+
+
+
 }
 
 

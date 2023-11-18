@@ -1,4 +1,4 @@
-import { Table, Model, Column, ForeignKey, BelongsTo, HasMany } from "sequelize-typescript";
+import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default } from "sequelize-typescript";
 import { AgeGroup } from "src/age-group/entities/age-group.entity";
 import { Clinic } from "src/clinics/entities/clinic.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
@@ -12,7 +12,9 @@ import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.
 @Table
 export class PublicPatient extends Model {
     
+
     
+    @Default(() => new Date().toISOString().split('T')[0]) // Default to today's date
     @Column({allowNull:false})
     visitDate: string
 

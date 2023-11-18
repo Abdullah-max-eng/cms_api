@@ -13,13 +13,29 @@ export class CreateFeeDto {
   @IsString()
   PaymentDate: string;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   @IsOptional()
   @IsNumber()
   ReproductivePatientID?: number;
-
-
   @IsOptional()
   @IsNumber()
   PublicPatientID?: number;
+  @IsOptional()
+  @IsNumber()
+  ChildrenPatientID?: number;
+  
 
 }
