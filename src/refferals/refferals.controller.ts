@@ -2,7 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { RefferalsService } from './refferals.service';
 import { CreateRefferalDto } from './dto/create-refferal.dto';
 import { UpdateRefferalDto } from './dto/update-refferal.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+
+
+@ApiTags('Refferals for patients')
+@ApiBearerAuth()
 @Controller('refferals')
 export class RefferalsController {
   constructor(private readonly refferalsService: RefferalsService) {}

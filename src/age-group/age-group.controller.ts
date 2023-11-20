@@ -2,7 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AgeGroupService } from './age-group.service';
 import { CreateAgeGroupDto } from './dto/create-age-group.dto';
 import { UpdateAgeGroupDto } from './dto/update-age-group.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Age groups of Patients')
+@ApiBearerAuth()
 @Controller('age-group')
 export class AgeGroupController {
   constructor(private readonly ageGroupService: AgeGroupService) {}

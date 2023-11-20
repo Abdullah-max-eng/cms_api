@@ -12,7 +12,13 @@ import { GetCurrentUserID } from 'src/common/decorators/get-current-user.id.deco
 import { AtGuard, RtGuard } from 'src/common/guards';
 import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
 import { changePassDto } from 'src/admins/dto/change-pass.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+
+
+@ApiTags('Data Entrants ')
+@ApiBearerAuth()
 @Controller('data-entrants')
 export class DataEntrantsController {
   constructor(

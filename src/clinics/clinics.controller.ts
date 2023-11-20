@@ -3,12 +3,14 @@ import { ClinicsService } from './clinics.service';
 import { CreateClinicDto } from './dto/create-clinic.dto';
 import { UpdateClinicDto } from './dto/update-clinic.dto';
 import { AtGuard } from 'src/common/guards';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 
 
 
 
-
+@ApiTags('Clinincs')
+@ApiBearerAuth()
 @Controller('clinics')
 export class ClinicsController {
   constructor(private readonly clinicsService: ClinicsService) {}

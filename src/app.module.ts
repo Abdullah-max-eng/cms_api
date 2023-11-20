@@ -20,6 +20,9 @@ import { AgeGroupModule } from './age-group/age-group.module';
 import { ReasonToVisitModule } from './reason-to-visit/reason-to-visit.module';
 import { RefferalsModule } from './refferals/refferals.module';
 import { FeesModule } from './fees/fees.module';
+import { NationalityModule } from './nationality/nationality.module';
+import { ServicesIntroductionModule } from './services-introduction/services-introduction.module';
+import { AdminsMessagesModule } from './admins-messages/admins-messages.module';
 
 @Module({
   imports: [
@@ -72,6 +75,9 @@ import { FeesModule } from './fees/fees.module';
     ReasonToVisitModule,
     RefferalsModule,
     FeesModule,
+    NationalityModule,
+    ServicesIntroductionModule,
+    AdminsMessagesModule,
 
 
 

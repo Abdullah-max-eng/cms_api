@@ -2,8 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 
+
+@ApiTags('Cities')
+@ApiBearerAuth()
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}

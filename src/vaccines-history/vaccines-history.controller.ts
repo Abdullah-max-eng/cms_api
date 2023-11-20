@@ -2,7 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { VaccinesHistoryService } from './vaccines-history.service';
 import { CreateVaccinesHistoryDto } from './dto/create-vaccines-history.dto';
 import { UpdateVaccinesHistoryDto } from './dto/update-vaccines-history.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Vaccines Records of Patients')
+@ApiBearerAuth()
 @Controller('vaccines-history')
 export class VaccinesHistoryController {
   constructor(private readonly vaccinesHistoryService: VaccinesHistoryService) {}
