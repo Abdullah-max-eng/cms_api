@@ -29,7 +29,7 @@ export class RefferalsService {
 
   async findAll() {
     try {
-      const records = await this.RefferalModel.findAll();
+      const records = await this.RefferalModel.scope('datesExcluded').findAll();
       return records;
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch  Record');

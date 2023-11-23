@@ -34,7 +34,7 @@ export class ServicesIntroductionService {
 
   async findAll() {
     try {
-      const records = await this.ServiceIntroductionModel.findAll();
+      const records = await this.ServiceIntroductionModel.scope('datesExcluded').findAll();
       return records;
     } catch (error) {
       throw new InternalServerErrorException('Failed to Records');

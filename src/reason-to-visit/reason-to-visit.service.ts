@@ -35,7 +35,7 @@ export class ReasonToVisitService {
 
   async findAll() {
     try {
-      const records = await this.reasonToVisitModel.findAll();
+      const records = await this.reasonToVisitModel.scope('datesExcluded').findAll();
       return records;
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch  Record');

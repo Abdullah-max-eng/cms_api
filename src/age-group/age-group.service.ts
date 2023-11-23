@@ -32,7 +32,7 @@ export class AgeGroupService {
 
   async findAll() {
     try {
-      const records = await this.AgeGroupModel.findAll();
+      const records = await this.AgeGroupModel.scope('datesExcluded').findAll();
       return records;
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch Medicaiton Record');
