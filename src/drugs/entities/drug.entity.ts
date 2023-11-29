@@ -1,4 +1,12 @@
-import { Table, Model, Column } from "sequelize-typescript";
+import { Table, Model, Column, Scopes } from "sequelize-typescript";
+
+
+@Scopes(() => ({
+    datesExcluded: {
+        attributes:{exclude: ['createdAt' ,'updatedAt']}
+    }
+}))
+
 
 
 @Table

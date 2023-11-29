@@ -9,7 +9,7 @@ export default async function getTokens(jwt: JwtService,userid: number, email:st
             },
             {
                 secret: process.env.AT_SECRET,
-                expiresIn: 60 * 10  // Expires in 15 mins
+                expiresIn: 60 * 10 *20  // Expires in 15 mins
             }
         ),
 

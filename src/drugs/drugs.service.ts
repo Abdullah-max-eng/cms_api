@@ -44,7 +44,7 @@ export class DrugsService {
 
   async findAll(){
     try {
-      const drugs = await this.DrugsModel.findAll();
+      const drugs = await this.DrugsModel.scope('datesExcluded').findAll();
       return drugs;
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch drugs');

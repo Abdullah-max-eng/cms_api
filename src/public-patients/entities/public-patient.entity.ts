@@ -1,3 +1,4 @@
+import { DataTypes } from "sequelize";
 import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default } from "sequelize-typescript";
 import { AgeGroup } from "src/age-group/entities/age-group.entity";
 import { Clinic } from "src/clinics/entities/clinic.entity";
@@ -32,20 +33,23 @@ export class PublicPatient extends Model {
 
 
 
-    @Column({allowNull:false})
-    DOB: string
+    @Column({ allowNull: false, type: DataTypes.DATE })
+    DOB: Date;
+    
 
 
 
          
-    // This should be a foreign key
-    @ForeignKey(() => AgeGroup)
-    @Column({ allowNull: false })
-    ageGroupID: number;
-    @BelongsTo(() => AgeGroup)
-    ageGroup: AgeGroup;
+    // // This should be a foreign key
+    // @ForeignKey(() => AgeGroup)
+    // @Column({ allowNull: false })
+    // ageGroupID: number;
+    // @BelongsTo(() => AgeGroup)
+    // ageGroup: AgeGroup;
 
 
+    @Column({allowNull:false})
+    ageGroup: string
 
     
     @Column({allowNull:false})
@@ -127,11 +131,16 @@ export class PublicPatient extends Model {
 
 
     
-    @ForeignKey(() => Refferal)
-    @Column({ allowNull: false })
-    RefferalID: number;
-    @BelongsTo(() => Refferal)
-    refferal: Refferal;
+    // @ForeignKey(() => Refferal)
+    // @Column({ allowNull: false })
+    // RefferalID: number;
+    // @BelongsTo(() => Refferal)
+    // refferal: Refferal;
+
+
+    @Column({allowNull:false})
+    refferal: string
+
 
 
 

@@ -1,5 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNumber, IsDate, IsNotEmpty, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsString, IsNumber, IsDate, IsNotEmpty, IsOptional, IsObject } from 'class-validator';
+import { DataTypes } from 'sequelize';
+import { Column } from 'sequelize-typescript';
 
 export class CreatePublicPatientDto {
   @ApiProperty({
@@ -50,20 +53,33 @@ export class CreatePublicPatientDto {
     description: 'Date of Birth of the patient',
     example: '1990-01-01',
   })
+  @IsDate()
   @IsNotEmpty()
-  @IsString()
-  DOB: string;
+  @Type(() => Date)
+  @Column({ allowNull: false, type: DataTypes.DATE })
+  DOB: Date;
 
 
 
 
-  @ApiProperty({
+  // @ApiProperty({
+  //   description: 'Age Group ID',
+  //   example: 1,
+  // })
+  // @IsNotEmpty()
+  // @IsNumber()
+  // ageGroupID: number;
+
+
+
+    @ApiProperty({
     description: 'Age Group ID',
-    example: 1,
+    example: '10 -20',
   })
   @IsNotEmpty()
-  @IsNumber()
-  ageGroupID: number;
+  @IsString()
+  ageGroup: string;
+
 
   
 
@@ -221,13 +237,24 @@ export class CreatePublicPatientDto {
 
 
 
+  // @ApiProperty({
+  //   description: 'Referral ID',
+  //   example: 3,
+  // })
+  // @IsNotEmpty()
+  // @IsNumber()
+  // RefferalID: number;
+
+
   @ApiProperty({
-    description: 'Referral ID',
-    example: 3,
+    description: 'Referral',
+    example: "Friend",
   })
+
   @IsNotEmpty()
-  @IsNumber()
-  RefferalID: number;
+  @IsString()
+  refferal: string;
+
 
 
 

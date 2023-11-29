@@ -1,6 +1,10 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
+
+
 export class CreateFeeDto {
+
+  
   @IsNotEmpty()
   @IsNumber()
   PayableFee: number;

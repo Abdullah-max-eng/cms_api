@@ -7,7 +7,10 @@ import { ReproductivePatient } from "src/reproductive-patients/entities/reproduc
 
 
 @Scopes(()=>({
-    findOne: (id:number) => ({where:{id:id}}),
+    findOne: (id:number) => (
+        {where:{id:id}, attributes:{exclude:["password", "Hashedrt", "createdAt", "updatedAt"]}}
+        
+        ),
     passExcluded: { attributes: { exclude: ["password", "Hashedrt"] } },
     
 }))
