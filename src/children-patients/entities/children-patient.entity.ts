@@ -6,6 +6,7 @@ import { Fee } from "src/fees/entities/fee.entity";
 import { Medication } from "src/medication/entities/medication.entity";
 import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.entity";
 import { Refferal } from "src/refferals/entities/refferal.entity";
+import { TestRecord } from "src/test-records/entities/test-record.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
 
 
@@ -154,7 +155,8 @@ export class ChildrenPatient extends Model {
 
 
 
-
+    @HasMany(() => TestRecord)
+    TestRecords: TestRecord[];
 
 
 

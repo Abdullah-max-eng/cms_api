@@ -37,7 +37,7 @@ export class MedicationService {
       return createMdeciationRecord;
     } catch (error) {
       if (error.name === 'SequelizeUniqueConstraintError') {
-        throw new ConflictException('Drug with the given name already exists');
+        throw new ConflictException('Medication  with the given name already exists');
       }
       throw new InternalServerErrorException('Failed to create record');
     }

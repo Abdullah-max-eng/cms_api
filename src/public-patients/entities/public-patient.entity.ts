@@ -8,7 +8,7 @@ import { Medication } from "src/medication/entities/medication.entity";
 import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.entity";
 import { Refferal } from "src/refferals/entities/refferal.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
-
+import { TestRecord } from "src/test-records/entities/test-record.entity";
 
 @Table
 export class PublicPatient extends Model {
@@ -72,8 +72,8 @@ export class PublicPatient extends Model {
     height:  string
 
 
-    @Column({allowNull:false})
-    heightsq:  string
+    // @Column({allowNull:false})
+    // heightsq:  string
 
 
 
@@ -117,6 +117,11 @@ export class PublicPatient extends Model {
 
     @Column({allowNull:false})
     servicesIntroduction: string;
+
+
+
+    @Column({allowNull:false})
+    diagnoses: string;
 
 
 
@@ -175,6 +180,11 @@ export class PublicPatient extends Model {
 
 
 
+
+
+
+    @HasMany(() => TestRecord)
+    TestRecords: TestRecord[];
 
 
 

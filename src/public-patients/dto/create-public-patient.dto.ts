@@ -136,13 +136,13 @@ export class CreatePublicPatientDto {
 
 
 
-  @ApiProperty({
-    description: 'Height square of the patient',
-    example: '32400',
-  })
-  @IsNotEmpty()
-  @IsString()
-  heightsq: string;
+  // @ApiProperty({
+  //   description: 'Height square of the patient',
+  //   example: '32400',
+  // })
+  // @IsNotEmpty()
+  // @IsString()
+  // heightsq: string;
 
 
 

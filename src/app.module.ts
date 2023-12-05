@@ -23,6 +23,10 @@ import { FeesModule } from './fees/fees.module';
 import { NationalityModule } from './nationality/nationality.module';
 import { ServicesIntroductionModule } from './services-introduction/services-introduction.module';
 import { AdminsMessagesModule } from './admins-messages/admins-messages.module';
+import { DiagnosesModule } from './diagnoses/diagnoses.module';
+import { TypesOfTestsModule } from './types-of-tests/types-of-tests.module';
+import { TestRecordsModule } from './test-records/test-records.module';
+import { TestResultsModule } from './test-results/test-results.module';
 
 @Module({
   imports: [
@@ -48,7 +52,7 @@ import { AdminsMessagesModule } from './admins-messages/admins-messages.module';
         synchronize: true,
         autoLoadModels: true,
         sync: {
-          // alter: true,
+          alter: true,
           // force: true,
         },
         models: [],
@@ -78,6 +82,10 @@ import { AdminsMessagesModule } from './admins-messages/admins-messages.module';
     NationalityModule,
     ServicesIntroductionModule,
     AdminsMessagesModule,
+    DiagnosesModule,
+    TypesOfTestsModule,
+    TestRecordsModule,
+    TestResultsModule,
 
 
 
