@@ -25,6 +25,7 @@ export class PublicPatientsService {
         weight: body.weight,
         BMI: await calculateBMI(body.weight,body.height),
         sugarTest: body.sugarTest,
+        diagnoses: body.diagnoses,
         bloodPressure: body.bloodPressure,
         VisitReasonID: body.VisitReasonID,
         physicianName: body.physicianName,
@@ -64,7 +65,7 @@ export class PublicPatientsService {
   
 
   async findOne(id: number) {
-        const aRecord = await this.PublicPModle.findOne({where:{id:id}});
+        const aRecord = await this.PublicPModle.scope('includeAssociations').findOne({where:{id:id}});
         if (!aRecord) {
           throw new NotFoundException(`Recrod with ID ${id} not found`);
         }else{
@@ -89,6 +90,7 @@ export class PublicPatientsService {
         reasonOfDisability:body.reasonOfDisability,
         height: body.height,
         weight: body.weight,
+        diagnoses: body.diagnoses,
         BMI: await calculateBMI(body.weight,body.height),
         sugarTest: body.sugarTest,
         bloodPressure: body.bloodPressure,

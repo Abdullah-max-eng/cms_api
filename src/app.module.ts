@@ -52,7 +52,7 @@ import { TestResultsModule } from './test-results/test-results.module';
         synchronize: true,
         autoLoadModels: true,
         sync: {
-          alter: true,
+          // alter: true,
           // force: true,
         },
         models: [],

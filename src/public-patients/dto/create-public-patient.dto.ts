@@ -161,6 +161,19 @@ export class CreatePublicPatientDto {
 
 
 
+
+
+  @ApiProperty({
+    description: 'Diagnoses',
+    example: '[Diagnose1, Diagnose2]',
+  })
+  @IsNotEmpty()
+  @IsString()
+  diagnoses: string;
+
+
+
+
   @ApiProperty({
     description: 'Sugar test result of the patient',
     example: 'Normal',

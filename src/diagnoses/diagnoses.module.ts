@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DiagnosesService } from './diagnoses.service';
 import { DiagnosesController } from './diagnoses.controller';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { Diagnosis } from './entities/diagnosis.entity';
 
 @Module({
+  imports:[SequelizeModule.forFeature([Diagnosis])],
   controllers: [DiagnosesController],
   providers: [DiagnosesService]
 })

@@ -6,8 +6,12 @@ import { TestResult } from "src/test-results/entities/test-result.entity";
 @Table
 export class TestRecord extends Model {
 
-    @Column({ allowNull: true })
+    @Column({ allowNull: true})
     testName: string;
+
+
+
+
 
 
     @ForeignKey(() => PublicPatient)

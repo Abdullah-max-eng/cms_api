@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default } from "sequelize-typescript";
+import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default, Scopes } from "sequelize-typescript";
 import { AgeGroup } from "src/age-group/entities/age-group.entity";
 import { Clinic } from "src/clinics/entities/clinic.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
@@ -9,6 +9,23 @@ import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.enti
 import { Refferal } from "src/refferals/entities/refferal.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
 import { TestRecord } from "src/test-records/entities/test-record.entity";
+
+
+
+
+@Scopes(() => ({
+    includeAssociations: {
+      include: [
+        { model: Fee, attributes:['PayableFee', 'collectedFee'] },
+        { model: TestRecord, attributes:['testName'] },
+        { model: VaccinesHistory, attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'] },
+        { model: Medication },
+      ],
+    },
+  }))
+
+
+
 
 @Table
 export class PublicPatient extends Model {
@@ -107,12 +124,6 @@ export class PublicPatient extends Model {
     physicianName: string
 
 
-    @HasMany(() => VaccinesHistory)
-    vaccinationRecords: VaccinesHistory[];
-  
-
-    @HasMany(() => Medication)
-    medicationRecords: Medication[];
 
 
     @Column({allowNull:false})
@@ -129,9 +140,7 @@ export class PublicPatient extends Model {
     remarks: string
 
 
-    
-    @HasMany(() => Fee)
-    Fees: Fee[];
+
 
 
 
@@ -181,10 +190,20 @@ export class PublicPatient extends Model {
 
 
 
-
+    
+    @HasMany(() => Fee)
+    Fees: Fee[];
 
     @HasMany(() => TestRecord)
     TestRecords: TestRecord[];
+
+    
+    @HasMany(() => VaccinesHistory)
+    vaccinationRecords: VaccinesHistory[];
+  
+
+    @HasMany(() => Medication)
+    medicationRecords: Medication[];
 
 
 

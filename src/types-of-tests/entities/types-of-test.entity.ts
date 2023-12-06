@@ -6,7 +6,7 @@ import { Model, Table, Column, NotNull } from "sequelize-typescript";
 export class TypesOfTest extends Model {
 
 
-    @Column({allowNull: false})
+    @Column({allowNull: false,  unique: true,  })
     testType: string
 
 
