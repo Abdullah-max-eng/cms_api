@@ -13,6 +13,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 export class FeesController {
   constructor(private readonly feesService: FeesService) {}
 
+
+
   @Post()
   create(@Body() createFeeDto: CreateFeeDto) {
     return this.feesService.create(createFeeDto);
@@ -28,6 +30,11 @@ export class FeesController {
     return this.feesService.findOne(+id);
   }
 
+
+
+
+
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFeeDto: UpdateFeeDto) {
     return this.feesService.update(+id, updateFeeDto);
@@ -36,5 +43,12 @@ export class FeesController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.feesService.remove(+id);
+  }
+
+
+
+  @Delete('/PP/:id')
+  removeAllPadedOnPatientIT(@Param('id') id: string) {
+    return this.feesService.removeAllBasedOnPPID(+id);
   }
 }

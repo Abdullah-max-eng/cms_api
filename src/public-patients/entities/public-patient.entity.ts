@@ -9,17 +9,26 @@ import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.enti
 import { Refferal } from "src/refferals/entities/refferal.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
 import { TestRecord } from "src/test-records/entities/test-record.entity";
-
-
+import { Drug } from "src/drugs/entities/drug.entity";
+import { Vaccine } from "src/vaccines/entities/vaccine.entity";
 
 
 @Scopes(() => ({
     includeAssociations: {
       include: [
-        { model: Fee, attributes:['PayableFee', 'collectedFee'] },
-        { model: TestRecord, attributes:['testName'] },
-        { model: VaccinesHistory, attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'] },
-        { model: Medication },
+        { model: Fee, attributes:['id','PayableFee', 'collectedFee'] },
+        { model: TestRecord, attributes:['id','testName'] },
+        { 
+          model: VaccinesHistory,
+          attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'], 
+          include: [{ model: Vaccine, attributes: ['name', 'type', 'doses'] }],
+
+        },
+        {
+          model: Medication,
+          attributes: ['startDate', 'endDate'],
+          include: [{ model: Drug, attributes: ['BrandName', 'strength'] }],
+        },
       ],
     },
   }))

@@ -1,7 +1,18 @@
-import { Model, BeforeSave, Table, Column, BelongsTo, ForeignKey, Default } from "sequelize-typescript";
+import { Model, BeforeSave, Scopes, Table, Column, BelongsTo, ForeignKey, Default } from "sequelize-typescript";
 import { ChildrenPatient } from "src/children-patients/entities/children-patient.entity";
 import { PublicPatient } from "src/public-patients/entities/public-patient.entity";
 import { ReproductivePatient } from "src/reproductive-patients/entities/reproductive-patient.entity";
+
+
+
+@Scopes(() => ({
+  forPublicPatient: (publicPatientId: number) => ({
+    where: { PublicPatientID: publicPatientId },
+  }),
+}))
+
+
+
 
 @Table
 export class Fee extends Model {
