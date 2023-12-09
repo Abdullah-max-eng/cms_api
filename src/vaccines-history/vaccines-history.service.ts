@@ -110,4 +110,27 @@ export class VaccinesHistoryService {
 
 
 
+
+
+
+
+      async removeAllBasedOnPPID(PPid: number) {
+        try {
+          
+          const allRecords = await this.VHModel.scope({ method: ['forPublicPatient', PPid] }).findAll();
+            console.log(allRecords)
+          // Destroy (delete) each retrieved record
+          for (const record of allRecords) {
+            await record.destroy();
+          }
+
+          return { status: true };
+        } catch (error) {
+          throw new InternalServerErrorException('Failed to delete the records');
+        }
+  }
+
+
+
+
 }

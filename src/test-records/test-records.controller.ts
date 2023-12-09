@@ -31,4 +31,20 @@ export class TestRecordsController {
   remove(@Param('id') id: string) {
     return this.testRecordsService.remove(+id);
   }
+
+
+  @Delete('/PP/:id')
+  removeAllRecordsBasedOnPatientID(@Param('id') id: string) {
+    return this.testRecordsService.removeAllBasedOnPPID(+id);
+  }
+
+
+
+  @Delete('/PP/DeleteTestResult/:id')
+  removeTestResultOfPP(@Param('id') id: string) {
+    return this.testRecordsService.removeTestResultOfTestRecord(+id);
+  }
+
+
+  
 }

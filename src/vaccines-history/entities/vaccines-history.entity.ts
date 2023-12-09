@@ -9,7 +9,14 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
 @Scopes(() => ({
     withVaccine: {
         include:[{ model: Vaccine, as: 'vaccine' }]
-    }
+    },
+
+
+    forPublicPatient: (publicPatientId: number) => ({
+        where: { PublicPatientID: publicPatientId },
+    }),
+
+
 }))
 
 

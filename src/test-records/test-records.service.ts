@@ -62,7 +62,7 @@ export class TestRecordsService {
 
 
   async findOne(id: number) {
-    const aRecord = await this.TestRecordsModel.findOne({where:{id:id}});
+    const aRecord = await this.TestRecordsModel.scope('withResult').findOne({where:{id:id}});
     if (!aRecord) {
       throw new NotFoundException(`Medication Recrod with ID ${id} not found`);
     }else{
@@ -101,6 +101,68 @@ export class TestRecordsService {
           throw new InternalServerErrorException('Failed to delete the record');
         }  
       }
+
+
+
+
+
+   async removeAllBasedOnPPID(PPid: number) {
+        try {
+          
+          const allRecords = await this.TestRecordsModel.scope({ method: ['forPublicPatient', PPid] }).findAll();
+          // Destroy (delete) each retrieved record
+          for (const record of allRecords) {
+            await record.destroy();
+          }
+
+          // Optionally, you can also use the bulkDestroy method to delete all records in a single query:
+          // await this.feeModel.destroy({ where: { PublicPatientID: PPid } });
+
+          // Return a success message or any necessary information
+          return { status: true };
+        } catch (error) {
+          // Handle errors, log them, or throw a specific exception
+          throw new InternalServerErrorException('Failed to delete the records');
+        }
+  }
+
+
+
+
+
+
+
+
+
+
+  async removeTestResultOfTestRecord(testRecordID: number) {
+    try {
+      // Find the TestRecord with associated TestResult using the scope
+      const testRecord = await this.TestRecordsModel.scope([{ method: ['FindByID', testRecordID] }, 'withResult']).findOne();
+  
+      if (!testRecord) {
+        throw new NotFoundException(`TestRecord with ID ${testRecordID} not found.`);
+      }
+  
+      const testResult = testRecord.TestResult;
+  
+      // Check if there is an associated TestResult before trying to delete
+      if (testResult) {
+        await testResult.destroy();
+  
+        // If you also want to return the deleted TestResult, you can do so
+        return { testResult };
+      } else {
+        // Return an indication that there was no associated TestResult
+        return { message: 'No associated TestResult found for the specified TestRecord.' };
+      }
+    } catch (error) {
+      console.error('Error removing test result:', error);
+      throw new InternalServerErrorException('Failed to delete the test result');
+    }
+  }
+  
+  
 
 
 
