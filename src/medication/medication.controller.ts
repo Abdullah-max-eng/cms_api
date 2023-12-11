@@ -53,6 +53,13 @@ export class MedicationController {
 
 
 
+  @Delete('/PP/:id')
+  removeAllPadedOnPatientIT(@Param('id') id: string) {
+    return this.medicationService.removeAllBasedOnPPID(+id);
+  }
+
+
+
 
   
 }

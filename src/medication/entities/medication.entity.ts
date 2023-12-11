@@ -6,9 +6,16 @@ import { ReproductivePatient } from "src/reproductive-patients/entities/reproduc
 
 
 @Scopes(() => ({
-    withDrug: {
-      include: [{ model: Drug, as: 'drug' }],
-    },
+                withDrug: {
+                include: [{ model: Drug, as: 'drug' }],
+                },
+
+
+        forPublicPatient: (publicPatientId: number) => ({
+          where: { PublicPatientID: publicPatientId },
+        }),
+
+      
 
 
 }))

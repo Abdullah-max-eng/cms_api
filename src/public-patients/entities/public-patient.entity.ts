@@ -26,8 +26,8 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
         },
         {
           model: Medication,
-          attributes: ['startDate', 'endDate'],
-          include: [{ model: Drug, attributes: ['BrandName', 'strength'] }],
+          attributes: [ 'startDate', 'endDate'],
+          include: [{ model: Drug }],
         },
       ],
     },
