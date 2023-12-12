@@ -26,12 +26,12 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
 export class VaccinesHistory extends Model {
 
 
-    @Column({allowNull:false})
+    @Column({allowNull:true})
     firstDoseDate: string
 
 
 
-    @Column({allowNull:false})
+    @Column({allowNull:true})
     NumberofTakenDoses: number
 
 
@@ -46,6 +46,9 @@ export class VaccinesHistory extends Model {
     comments: string;
 
 
+
+
+    
 
 
     @ForeignKey(() => Vaccine)

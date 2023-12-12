@@ -13,28 +13,42 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 export class PublicPatientsController {
   constructor(private readonly publicPatientsService: PublicPatientsService) {}
 
-  @Post()
-  create(@Body() createPublicPatientDto: CreatePublicPatientDto) {
-    return this.publicPatientsService.create(createPublicPatientDto);
-  }
+        @Post()
+        create(@Body() createPublicPatientDto: CreatePublicPatientDto) {
+          return this.publicPatientsService.create(createPublicPatientDto);
+        }
 
-  @Get()
-  findAll() {
-    return this.publicPatientsService.findAll();
-  }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.publicPatientsService.findOne(+id);
-  }
+        
+        @Get('/GetTodaysPatiets')
+        getTodaysPatient() {
+          return this.publicPatientsService.getTodayspatient();
+        }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePublicPatientDto: UpdatePublicPatientDto) {
-    return this.publicPatientsService.update(+id, updatePublicPatientDto);
-  }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.publicPatientsService.remove(+id);
-  }
+
+        @Get()
+        findAll() {
+          return this.publicPatientsService.findAll();
+        }
+
+        @Get(':id')
+        findOne(@Param('id') id: string) {
+          return this.publicPatientsService.findOne(+id);
+        }
+
+        @Patch(':id')
+        update(@Param('id') id: string, @Body() updatePublicPatientDto: UpdatePublicPatientDto) {
+          return this.publicPatientsService.update(+id, updatePublicPatientDto);
+        }
+
+        @Delete(':id')
+        remove(@Param('id') id: string) {
+          return this.publicPatientsService.remove(+id);
+        }
+
+
+
+
+        
 }

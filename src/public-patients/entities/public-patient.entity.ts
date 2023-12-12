@@ -18,10 +18,11 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
       include: [
         { model: Fee, attributes:['id','PayableFee', 'collectedFee'] },
         { model: TestRecord, attributes:['id','testName'] },
+        
         { 
           model: VaccinesHistory,
           attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'], 
-          include: [{ model: Vaccine, attributes: ['name', 'type', 'doses'] }],
+          include: [{ model: Vaccine, attributes: ['id','name', 'type', 'doses'] }],
 
         },
         {

@@ -4,22 +4,22 @@ import { IsNotEmpty, IsNumber, IsBoolean, IsString, IsOptional } from 'class-val
 export class CreateVaccinesHistoryDto {
 
 
-        @IsNotEmpty()
+        @IsOptional()
         @IsString()
         firstDoseDate: string;
 
-        @IsNotEmpty()
+        @IsOptional()
         @IsNumber()
         numberOfTakenDoses: number;
 
-        @IsNotEmpty()
+        @IsOptional()
         @IsBoolean()
         vaccinationStatus: boolean;
 
-        @IsString()
+        @IsOptional()
         comments: string;
 
-        @IsNotEmpty()
+        @IsOptional()
         @IsNumber()
         vaccineId: number;
 

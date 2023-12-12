@@ -12,6 +12,10 @@ export class VaccinesHistoryService {
 
 
     async create(body: CreateVaccinesHistoryDto) {
+
+
+      
+      
       const first_Dose_Date = body.firstDoseDate;
       const numberOfTakenDoses = body.numberOfTakenDoses;
       const status = body.vaccinationStatus;
@@ -118,7 +122,7 @@ export class VaccinesHistoryService {
         try {
           
           const allRecords = await this.VHModel.scope({ method: ['forPublicPatient', PPid] }).findAll();
-            console.log(allRecords)
+   
           // Destroy (delete) each retrieved record
           for (const record of allRecords) {
             await record.destroy();

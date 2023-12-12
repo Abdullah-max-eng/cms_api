@@ -111,6 +111,17 @@ export class PublicPatientsService {
 
 
 
+  async getTodayspatient(){
+    const currentDate = new Date();
+    const todaysDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const AllRecords = await this.PublicPModle.findAll({where:{visitDate:todaysDate}});
+    return AllRecords
+
+  }
+
+
+
+
   async remove(id: number) {
     try {
       const deletedRows = await this.PublicPModle.destroy({ where: { id } });
