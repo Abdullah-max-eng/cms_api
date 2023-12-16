@@ -53,7 +53,7 @@ export class TestRecordsService {
       const records = await this.TestRecordsModel.findAll();
       return records;
     } catch (error) {
-      throw new InternalServerErrorException('Failed to fetch Medicaiton Record');
+      throw new InternalServerErrorException('Failed to fetch Test Record');
     }
   }
 
@@ -64,7 +64,7 @@ export class TestRecordsService {
   async findOne(id: number) {
     const aRecord = await this.TestRecordsModel.scope('withResult').findOne({where:{id:id}});
     if (!aRecord) {
-      throw new NotFoundException(`Medication Recrod with ID ${id} not found`);
+      throw new NotFoundException(`Test Recrod with ID ${id} not found`);
     }else{
       return aRecord
     }
