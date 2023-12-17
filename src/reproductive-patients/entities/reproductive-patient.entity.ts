@@ -1,4 +1,4 @@
-import { Model, Column, Table, ForeignKey, HasOne, BelongsTo, HasMany, DataType } from "sequelize-typescript";
+import { Model, Column, Table, ForeignKey, HasOne, BelongsTo, HasMany, DataType, Default } from "sequelize-typescript";
 import { AgeGroup } from "src/age-group/entities/age-group.entity";
 import { Clinic } from "src/clinics/entities/clinic.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
@@ -14,13 +14,12 @@ import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.
 export class ReproductivePatient extends Model {
 
 
-        @Column({allowNull:false})
-        nationality: string
 
 
+
+        @Default(() => new Date().toISOString().split('T')[0]) // Default to today's date
         @Column({allowNull:false})
         visitDate: string
-
 
         @Column({allowNull:false})
         name: string
@@ -36,9 +35,6 @@ export class ReproductivePatient extends Model {
         @Column({allowNull:false})
         Height: string
 
-        
-        @Column({allowNull:false})
-        Heightsq: string
 
 
         @Column({allowNull:false})
@@ -55,7 +51,7 @@ export class ReproductivePatient extends Model {
 
 
         @Column({allowNull:false})
-        NumberOfChildrebt:  number
+        NumberOfChildren:  number
 
 
         @Column({allowNull:false})
@@ -109,12 +105,25 @@ export class ReproductivePatient extends Model {
 
 
 
-            // This should be a foreign key
-            @ForeignKey(() => AgeGroup)
-            @Column({ allowNull: false })
-            ageGroupID: number;
-            @BelongsTo(() => AgeGroup)
-            ageGroup: AgeGroup;
+          @Column({allowNull:false})
+          ageGroup: string;
+
+
+
+          
+          @Column({allowNull:false})
+          refferal: string
+
+
+
+          
+          @Column({allowNull:false})
+          diagnoses: string;
+
+
+
+
+      
 
 
 
@@ -169,14 +178,6 @@ export class ReproductivePatient extends Model {
 
             
 
-
-
-
-            @ForeignKey(() => Refferal)
-            @Column({ allowNull: false })
-            RefferalID: number;
-            @BelongsTo(() => Refferal)
-            refferal: Refferal;
 
 
 

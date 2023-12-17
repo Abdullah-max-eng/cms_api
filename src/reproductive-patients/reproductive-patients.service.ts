@@ -11,20 +11,19 @@ export class ReproductivePatientsService {
 
 
           async create(body: CreateReproductivePatientDto) {
-              try {
+            try {
                 const created = await this.RPModel.create({
-                  nationality: body.nationality,
+               
                   visitDate: body.visitDate,
                   name: body.name,
                   address: body.address,
                   DOB: body.DOB,
                   Height: body.Height,
-                  Heightsq: body.Heightsq,
                   Weight: body.Weight,
                   BMI: await calculateBMI(body.Weight,body.Height),
                   MaritalStatus: body.MaritalStatus,
-                  NumberOfChildrebt: body.NumberOfChildren,
-                  PreviouseAbortions: body.PreviousAbortions,
+                  NumberOfChildren: body.NumberOfChildren,
+                  PreviouseAbortions: body.PreviouseAbortions,
                   DateOfLastBirth: body.DateOfLastBirth,
                   NormalBirthStatus: body.NormalBirthStatus,
                   DateOfLastMenstruation: body.DateOfLastMenstruation,
@@ -33,16 +32,18 @@ export class ReproductivePatientsService {
                   DiabetesScreening: body.DiabetesScreening,
                   BloodPressure: body.BloodPressure,
                   physicianName: body.physicianName,
-                  ageGroupID: body.ageGroupID,
+                  ageGroup: body.ageGroup,
                   VisitReasonID: body.VisitReasonID,
-                  clinicID: body.clinincID,
+                  clinicID: body.clinicID,
                   DataEntrantID: body.DataEntrantID,
-                  RefferalID: body.RefferalID,
+                  refferal: body.refferal,
+                  diagnoses: body.diagnoses,
                   servicesIntroduction: body.servicesIntroduction
               
                 });
                 return created;
               } catch (error) {
+                console.log(error)
                 if (error.name === 'SequelizeUniqueConstraintError') {
                   throw new ConflictException('Already Exist!');
                 }
@@ -83,18 +84,16 @@ export class ReproductivePatientsService {
           async update(id: number, body: UpdateReproductivePatientDto) {
             const getRecord = await this.findOne(id)
             const updatedOne = await getRecord.update({
-              nationality: body.nationality,
               visitDate: body.visitDate,
               name: body.name,
               address: body.address,
               DOB: body.DOB,
               Height: body.Height,
-              Heightsq: body.Heightsq,
               Weight: body.Weight,
               BMI: await calculateBMI(body.Weight,body.Height),
               MaritalStatus: body.MaritalStatus,
               NumberOfChildrebt: body.NumberOfChildren,
-              PreviouseAbortions: body.PreviousAbortions,
+              PreviouseAbortions: body.PreviouseAbortions,
               DateOfLastBirth: body.DateOfLastBirth,
               NormalBirthStatus: body.NormalBirthStatus,
               DateOfLastMenstruation: body.DateOfLastMenstruation,
@@ -103,15 +102,17 @@ export class ReproductivePatientsService {
               DiabetesScreening: body.DiabetesScreening,
               BloodPressure: body.BloodPressure,
               physicianName: body.physicianName,
-              ageGroupID: body.ageGroupID,
+              ageGroup: body.ageGroup,
               VisitReasonID: body.VisitReasonID,
-              clinicID: body.clinincID,
+              clinicID: body.clinicID,
               DataEntrantID: body.DataEntrantID,
-              RefferalID: body.RefferalID,
+              refferal: body.refferal,
+              diagnoses: body.diagnoses,
               servicesIntroduction: body.servicesIntroduction
 
 
             })
+
           return {status: true, updatedOne}    
         }
 

@@ -66,14 +66,7 @@ export class PublicPatient extends Model {
 
 
 
-         
-    // // This should be a foreign key
-    // @ForeignKey(() => AgeGroup)
-    // @Column({ allowNull: false })
-    // ageGroupID: number;
-    // @BelongsTo(() => AgeGroup)
-    // ageGroup: AgeGroup;
-
+        
 
     @Column({allowNull:false})
     ageGroup: string
@@ -99,8 +92,6 @@ export class PublicPatient extends Model {
     height:  string
 
 
-    // @Column({allowNull:false})
-    // heightsq:  string
 
 
 
@@ -153,13 +144,6 @@ export class PublicPatient extends Model {
 
 
 
-
-    
-    // @ForeignKey(() => Refferal)
-    // @Column({ allowNull: false })
-    // RefferalID: number;
-    // @BelongsTo(() => Refferal)
-    // refferal: Refferal;
 
 
     @Column({allowNull:false})
