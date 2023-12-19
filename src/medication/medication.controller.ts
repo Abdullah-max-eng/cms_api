@@ -54,9 +54,24 @@ export class MedicationController {
 
 
   @Delete('/PP/:id')
-  removeAllPadedOnPatientIT(@Param('id') id: string) {
+  removeAllMedicationRecordsBasedOnPPID(@Param('id') id: string) {
     return this.medicationService.removeAllBasedOnPPID(+id);
   }
+
+
+
+  @Delete('/RP/:id')
+  removeAllMedicationRecordsBasedOnRPID(@Param('id') id: string) {
+    return this.medicationService.removeAllBasedOnRPID(+id);
+  }
+
+
+
+  @Delete('/CP/:id')
+  removeAllMedicationRecordsBasedOnCPID(@Param('id') id: string) {
+    return this.medicationService.removeAllBasedOnCPID(+id);
+  }
+
 
 
 

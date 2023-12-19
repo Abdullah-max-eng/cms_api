@@ -17,6 +17,16 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
     }),
 
 
+    forRP: (RPID: number) => ({
+        where: { ReproductivePatientID: RPID },
+    }),
+
+
+    forCP: (CPID: number) => ({
+        where: { ChildrenPatientID: CPID },
+    }),
+
+
 }))
 
 

@@ -27,6 +27,9 @@ export class CreateReproductivePatientDto {
   @IsString()
   DOB: string;
 
+
+
+
   @IsNotEmpty()
   @IsString()
   Height: string;
@@ -60,6 +63,12 @@ export class CreateReproductivePatientDto {
   @IsNotEmpty()
   @IsString()
   DateOfLastBirth: string;
+
+
+
+  @IsNotEmpty()
+  @IsNumber()
+  marriageAge: number;
 
 
 

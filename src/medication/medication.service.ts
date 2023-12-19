@@ -121,22 +121,52 @@ export class MedicationService {
     try {
       
       const allRecords = await this.MedicaitonModel.scope({ method: ['forPublicPatient', PPid] }).findAll();
-      console.log(allRecords)
-      // Destroy (delete) each retrieved record
       for (const record of allRecords) {
         await record.destroy();
       }
 
-      // Optionally, you can also use the bulkDestroy method to delete all records in a single query:
-      // await this.feeModel.destroy({ where: { PublicPatientID: PPid } });
-
-      // Return a success message or any necessary information
       return { status: true };
     } catch (error) {
-      // Handle errors, log them, or throw a specific exception
       throw new InternalServerErrorException('Failed to delete the records');
     }
 }
+
+
+
+
+
+async removeAllBasedOnRPID(RPid: number) {
+  try {
+    
+    const allRecords = await this.MedicaitonModel.scope({ method: ['forRP', RPid] }).findAll();
+    for (const record of allRecords) {
+      await record.destroy();
+    }
+
+    return { status: true };
+  } catch (error) {
+    throw new InternalServerErrorException('Failed to delete the records');
+  }
+}
+
+
+
+
+
+async removeAllBasedOnCPID(CPid: number) {
+  try {
+    
+    const allRecords = await this.MedicaitonModel.scope({ method: ['forCP', CPid] }).findAll();
+    for (const record of allRecords) {
+      await record.destroy();
+    }
+
+    return { status: true };
+  } catch (error) {
+    throw new InternalServerErrorException('Failed to delete the records');
+  }
+}
+
 
 
 

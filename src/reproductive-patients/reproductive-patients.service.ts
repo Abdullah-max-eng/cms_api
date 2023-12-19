@@ -38,6 +38,7 @@ export class ReproductivePatientsService {
                   DataEntrantID: body.DataEntrantID,
                   refferal: body.refferal,
                   diagnoses: body.diagnoses,
+                  marriageAge: body.marriageAge,
                   servicesIntroduction: body.servicesIntroduction
               
                 });
@@ -69,7 +70,7 @@ export class ReproductivePatientsService {
 
 
           async findOne(id: number) {
-            const aRecord = await this.RPModel.findOne({where:{id:id}});
+            const aRecord = await this.RPModel.scope('includeAssociations').findOne({where:{id:id}});
             if (!aRecord) {
               throw new NotFoundException(`Recrod with ID ${id} not found`);
             }else{
@@ -108,8 +109,8 @@ export class ReproductivePatientsService {
               DataEntrantID: body.DataEntrantID,
               refferal: body.refferal,
               diagnoses: body.diagnoses,
-              servicesIntroduction: body.servicesIntroduction
-
+              servicesIntroduction: body.servicesIntroduction,
+              marriageAge: body.marriageAge,
 
             })
 

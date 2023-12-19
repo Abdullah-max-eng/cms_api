@@ -38,8 +38,21 @@ export class VaccinesHistoryController {
 
 
   @Delete('/PP/:id')
-  removeAllPadedOnPatientIT(@Param('id') id: string) {
+  removeAllforPP(@Param('id') id: string) {
     return this.vaccinesHistoryService.removeAllBasedOnPPID(+id);
+  }
+
+
+  @Delete('/RP/:id')
+  removeAllforRP(@Param('id') id: string) {
+    return this.vaccinesHistoryService.removeAllBasedOnRPID(+id);
+  }
+
+
+
+  @Delete('/PP/:id')
+  removeAllforCP(@Param('id') id: string) {
+    return this.vaccinesHistoryService.removeAllBasedOnCPID(+id);
   }
 
 

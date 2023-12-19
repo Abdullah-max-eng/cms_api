@@ -108,7 +108,6 @@ export class FeesService {
         try {
           
           const allRecords = await this.FeeModel.scope({ method: ['forPublicPatient', PPid] }).findAll();
-          console.log(allRecords)
           // Destroy (delete) each retrieved record
           for (const record of allRecords) {
             await record.destroy();
@@ -124,6 +123,57 @@ export class FeesService {
           throw new InternalServerErrorException('Failed to delete the records');
         }
   }
+
+
+
+
+
+
+
+
+  async removeAllBasedOnRPID(RPid: number) {
+    try {
+      
+      const allRecords = await this.FeeModel.scope({ method: ['forRP', RPid] }).findAll();
+      console.log(allRecords)
+      // Destroy (delete) each retrieved record
+      for (const record of allRecords) {
+        await record.destroy();
+      }
+      return { status: true };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to delete the records');
+    }
+   
+}
+
+
+
+
+
+
+
+
+async removeAllBasedOnCPID(CPid: number) {
+  try {
+    
+    const allRecords = await this.FeeModel.scope({ method: ['forCP', CPid] }).findAll();
+    console.log(allRecords)
+    // Destroy (delete) each retrieved record
+    for (const record of allRecords) {
+      await record.destroy();
+    }
+    return { status: true };
+  } catch (error) {
+    throw new InternalServerErrorException('Failed to delete the records');
+  }
+ 
+}
+
+
+
+
+
 
 
 

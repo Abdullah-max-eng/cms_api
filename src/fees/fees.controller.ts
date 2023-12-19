@@ -48,7 +48,25 @@ export class FeesController {
 
 
   @Delete('/PP/:id')
-  removeAllPadedOnPatientIT(@Param('id') id: string) {
+  removeAllFeeRecordsOnBasedOnPPID(@Param('id') id: string) {
     return this.feesService.removeAllBasedOnPPID(+id);
   }
+
+
+
+
+  @Delete('/RP/:id')
+  removeAllFeeRecordsOnBasedOnRPID(@Param('id') id: string) {
+    return this.feesService.removeAllBasedOnRPID(+id);
+  }
+
+
+
+
+  @Delete('/RP/:id')
+  removeAllFeeRecordsOnBasedOnCPID(@Param('id') id: string) {
+    return this.feesService.removeAllBasedOnCPID(+id);
+  }
+
+
 }

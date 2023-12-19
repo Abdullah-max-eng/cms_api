@@ -137,4 +137,44 @@ export class VaccinesHistoryService {
 
 
 
+
+  async removeAllBasedOnRPID(RPid: number) {
+    try {
+      
+      const allRecords = await this.VHModel.scope({ method: ['forRP', RPid] }).findAll();
+
+      for (const record of allRecords) {
+        await record.destroy();
+      }
+
+      return { status: true };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to delete the records');
+    }
+}
+
+
+
+
+
+async removeAllBasedOnCPID(CPid: number) {
+  try {
+    
+    const allRecords = await this.VHModel.scope({ method: ['forCP', CPid] }).findAll();
+
+    // Destroy (delete) each retrieved record
+    for (const record of allRecords) {
+      await record.destroy();
+    }
+
+    return { status: true };
+  } catch (error) {
+    throw new InternalServerErrorException('Failed to delete the records');
+  }
+}
+
+
+
+
+
 }

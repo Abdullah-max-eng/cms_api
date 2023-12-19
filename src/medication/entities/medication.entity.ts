@@ -15,6 +15,17 @@ import { ReproductivePatient } from "src/reproductive-patients/entities/reproduc
           where: { PublicPatientID: publicPatientId },
         }),
 
+
+        forRP: (RPID: number) => ({
+          where: { ReproductivePatientID: RPID },
+        }),
+
+
+        forCP: (CPID: number) => ({
+          where: { ChildrenPatientID: CPID },
+        }),
+
+
       
 
 

@@ -9,6 +9,12 @@ import { ReproductivePatient } from "src/reproductive-patients/entities/reproduc
   forPublicPatient: (publicPatientId: number) => ({
     where: { PublicPatientID: publicPatientId },
   }),
+  forRP: (RPID: number) => ({
+    where: { ReproductivePatientID: RPID },
+  }),
+  forCP: (CPID: number) => ({
+    where: { ChildrenPatientID: CPID },
+  }),
 }))
 
 
@@ -44,6 +50,7 @@ export class Fee extends Model {
   @ForeignKey(() => ReproductivePatient)
   @Column({ allowNull: true })
   ReproductivePatientID: number;
+  
   @BelongsTo(() => ReproductivePatient)
   reproductivePatient: ReproductivePatient;
 
