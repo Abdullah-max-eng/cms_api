@@ -24,6 +24,13 @@ export class ChildrenPatientsController {
 
 
 
+  @Get('/GetTodaysPatiets')
+  getTodaysPatient() {
+    return this.childrenPatientsService.getTodayspatient();
+  }
+
+
+
   @Get()
   findAll() {
     return this.childrenPatientsService.findAll();

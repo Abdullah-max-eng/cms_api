@@ -23,19 +23,18 @@ export class ChildrenPatientsService {
         nationality: body.nationality,
         address: body.address,
         DOB: body.DOB,
-        ageGroupID: body.ageGroupID,
+        ageGroup: body.ageGroup,
         sex:body.sex,
         disability: body.disability,
         reasonOfDisability:body.reasonOfDisability,
         height: body.height,
-        heightsq: body.heightsq,
         weight: body.weight,
         BMI: await calculateBMI(body.weight,body.height),      
         VisitReasonID: body.VisitReasonID,
         physicianName: body.physicianName,
         servicesIntroduction: body.servicesIntroduction,
         remarks: body.remarks,
-        RefferalID: body.RefferalID,
+        refferal: body.refferal,
         clinicID: body.clinicID,
         DataEntrantID: body.DataEntrantID,      
     
@@ -85,24 +84,34 @@ export class ChildrenPatientsService {
       nationality: body.nationality,
       address: body.address,
       DOB: body.DOB,
-      ageGroupID: body.ageGroupID,
+      ageGroup: body.ageGroup,
       sex:body.sex,
       disability: body.disability,
       reasonOfDisability:body.reasonOfDisability,
       height: body.height,
-      heightsq: body.heightsq,
       weight: body.weight,
       BMI: await calculateBMI(body.weight,body.height),
       VisitReasonID: body.VisitReasonID,
       physicianName: body.physicianName,
       servicesIntroduction: body.servicesIntroduction,
       remarks: body.remarks,
-      RefferalID: body.RefferalID,
+      refferal: body.refferal,
       clinicID: body.clinicID,
       DataEntrantID: body.DataEntrantID,
     })
     return {status: true, updatedOne}    
 
+
+  }
+
+
+
+  
+  async getTodayspatient(){
+    const currentDate = new Date();
+    const todaysDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const AllRecords = await this.ChildModel.findAll({where:{visitDate:todaysDate}});
+    return AllRecords
 
   }
 

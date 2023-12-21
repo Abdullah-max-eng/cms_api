@@ -83,39 +83,39 @@ export class ReproductivePatientsService {
 
 
           async update(id: number, body: UpdateReproductivePatientDto) {
-            const getRecord = await this.findOne(id)
-            const updatedOne = await getRecord.update({
-              visitDate: body.visitDate,
-              name: body.name,
-              address: body.address,
-              DOB: body.DOB,
-              Height: body.Height,
-              Weight: body.Weight,
-              BMI: await calculateBMI(body.Weight,body.Height),
-              MaritalStatus: body.MaritalStatus,
-              NumberOfChildrebt: body.NumberOfChildren,
-              PreviouseAbortions: body.PreviouseAbortions,
-              DateOfLastBirth: body.DateOfLastBirth,
-              NormalBirthStatus: body.NormalBirthStatus,
-              DateOfLastMenstruation: body.DateOfLastMenstruation,
-              contraceptives: body.contraceptives,
-              IronInspection: body.IronInspection,
-              DiabetesScreening: body.DiabetesScreening,
-              BloodPressure: body.BloodPressure,
-              physicianName: body.physicianName,
-              ageGroup: body.ageGroup,
-              VisitReasonID: body.VisitReasonID,
-              clinicID: body.clinicID,
-              DataEntrantID: body.DataEntrantID,
-              refferal: body.refferal,
-              diagnoses: body.diagnoses,
-              servicesIntroduction: body.servicesIntroduction,
-              marriageAge: body.marriageAge,
+              const getRecord = await this.findOne(id)
+              const updatedOne = await getRecord.update({
+                visitDate: body.visitDate,
+                name: body.name,
+                address: body.address,
+                DOB: body.DOB,
+                Height: body.Height,
+                Weight: body.Weight,
+                BMI: await calculateBMI(body.Weight,body.Height),
+                MaritalStatus: body.MaritalStatus,
+                NumberOfChildrebt: body.NumberOfChildren,
+                PreviouseAbortions: body.PreviouseAbortions,
+                DateOfLastBirth: body.DateOfLastBirth,
+                NormalBirthStatus: body.NormalBirthStatus,
+                DateOfLastMenstruation: body.DateOfLastMenstruation,
+                contraceptives: body.contraceptives,
+                IronInspection: body.IronInspection,
+                DiabetesScreening: body.DiabetesScreening,
+                BloodPressure: body.BloodPressure,
+                physicianName: body.physicianName,
+                ageGroup: body.ageGroup,
+                VisitReasonID: body.VisitReasonID,
+                clinicID: body.clinicID,
+                DataEntrantID: body.DataEntrantID,
+                refferal: body.refferal,
+                diagnoses: body.diagnoses,
+                servicesIntroduction: body.servicesIntroduction,
+                marriageAge: body.marriageAge,
 
-            })
+              })
 
-          return {status: true, updatedOne}    
-        }
+            return {status: true, updatedOne}    
+          }
 
 
 
@@ -131,6 +131,17 @@ export class ReproductivePatientsService {
             }  
           
           }
+
+
+
+          async getTodayspatient(){
+            const currentDate = new Date();
+            const todaysDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            const AllRecords = await this.RPModel.findAll({where:{visitDate:todaysDate}});
+            return AllRecords
+        
+          }
+        
 
 
   

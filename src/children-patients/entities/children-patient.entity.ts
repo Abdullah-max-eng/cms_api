@@ -15,7 +15,7 @@ import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.
 export class ChildrenPatient extends Model {
 
     
-    @Default(() => new Date().toISOString().split('T')[0]) // Default to today's date
+    @Default(() => new Date().toISOString().split('T')[0]) 
     @Column({allowNull:false})
     visitDate: string
 
@@ -39,12 +39,8 @@ export class ChildrenPatient extends Model {
 
 
          
-    // This should be a foreign key
-    @ForeignKey(() => AgeGroup)
-    @Column({ allowNull: false })
-    ageGroupID: number;
-    @BelongsTo(() => AgeGroup)
-    ageGroup: AgeGroup;
+    @Column({allowNull:false})
+    ageGroup: string
 
 
 
@@ -69,13 +65,12 @@ export class ChildrenPatient extends Model {
     height:  string
 
 
-    @Column({allowNull:false})
-    heightsq:  string
-
 
 
     @Column({allowNull:false})
     weight:  string
+
+
 
 
     @Column({allowNull:false})
@@ -114,11 +109,9 @@ export class ChildrenPatient extends Model {
 
 
 
-    @ForeignKey(() => Refferal)
-    @Column({ allowNull: false })
-    RefferalID: number;
-    @BelongsTo(() => Refferal)
-    refferal: Refferal;
+    @Column({allowNull:false})
+    refferal: string
+
 
 
     @HasMany(() => Fee)

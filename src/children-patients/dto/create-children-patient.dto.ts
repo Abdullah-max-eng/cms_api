@@ -66,12 +66,12 @@ export class CreateChildrenPatientDto {
 
 
   @ApiProperty({
-    description: 'Age Group ID',
+    description: 'Age Group',
     example: 1,
   })
   @IsNotEmpty()
-  @IsNumber()
-  ageGroupID: number;
+  @IsString()
+  ageGroup: string;
 
 
 
@@ -121,13 +121,7 @@ export class CreateChildrenPatientDto {
 
 
 
-  @ApiProperty({
-    description: 'Height square of the patient',
-    example: '14400',
-  })
-  @IsNotEmpty()
-  @IsString()
-  heightsq: string;
+
 
 
 
@@ -181,12 +175,12 @@ export class CreateChildrenPatientDto {
 
 
   @ApiProperty({
-    description: 'Referral ID',
+    description: 'Referral ',
     example: 3,
   })
   @IsNotEmpty()
-  @IsNumber()
-  RefferalID: number;
+  @IsString()
+  refferal: string;
 
 
 

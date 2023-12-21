@@ -17,6 +17,13 @@ export class ReproductivePatientsController {
     return this.reproductivePatientsService.create(createReproductivePatientDto);
   }
 
+  @Get('/GetTodaysPatiets')
+  getTodaysPatient() {
+    return this.reproductivePatientsService.getTodayspatient();
+  }
+
+
+
   @Get()
   findAll() {
     return this.reproductivePatientsService.findAll();
