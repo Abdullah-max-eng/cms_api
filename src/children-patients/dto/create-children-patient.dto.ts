@@ -63,6 +63,16 @@ export class CreateChildrenPatientDto {
 
 
 
+  @ApiProperty({
+    description: 'Diagnoses',
+    example: '[Diagnose1, Diagnose2]',
+  })
+  @IsNotEmpty()
+  @IsString()
+  diagnoses: string;
+
+
+
 
 
   @ApiProperty({

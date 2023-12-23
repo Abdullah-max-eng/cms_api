@@ -50,7 +50,7 @@ export class TestRecordsService {
 
   async findAll() {
     try {
-      const records = await this.TestRecordsModel.findAll();
+      const records = await this.TestRecordsModel.scope('withResult').findAll();
       return records;
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch Test Record');
@@ -146,7 +146,6 @@ export class TestRecordsService {
   
       const testResult = testRecord.TestResult;
   
-      // Check if there is an associated TestResult before trying to delete
       if (testResult) {
         await testResult.destroy();
   

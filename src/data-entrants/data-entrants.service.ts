@@ -53,7 +53,7 @@ export class DataEntrantsService {
 
 
   async getOne(id: number) {
-    const dataEntrant = await this.DataEntrantModel.scope({method:['findOne', id]}).findOne()
+    const dataEntrant = await this.DataEntrantModel.findByPk(id)
     if(dataEntrant){
       return dataEntrant
     }

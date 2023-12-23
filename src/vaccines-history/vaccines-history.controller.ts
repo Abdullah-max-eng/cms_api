@@ -50,7 +50,7 @@ export class VaccinesHistoryController {
 
 
 
-  @Delete('/PP/:id')
+  @Delete('/CP/:id')
   removeAllforCP(@Param('id') id: string) {
     return this.vaccinesHistoryService.removeAllBasedOnCPID(+id);
   }

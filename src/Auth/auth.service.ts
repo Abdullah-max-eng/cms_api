@@ -137,6 +137,9 @@ export class AuthService{
         }
        }
 
+
+
+
     async updateRtHashAdmin(id: number, rt: string){
         const hashedRT = await this.hashData(rt);
         await this.adminServices.update(id,{
@@ -162,7 +165,7 @@ export class AuthService{
 
 
 
-// ****************Services for Admins*******************
+// ****************Services for Data Entrant*******************
 
 
 
@@ -255,8 +258,11 @@ export class AuthService{
 
 
     async changePassEntarant(body: changePassDto, currentUserID: number) {
-        const user = await this.dataEntrantService.getOne(currentUserID);
-        if (user) {
+        
+      
+      const user = await this.dataEntrantService.getOne(currentUserID);
+ 
+      if (user) {
           const currentHashedPassInDB = user.dataValues.password;
           const match = await this.compareHashes(body.currentPassword, currentHashedPassInDB);
       

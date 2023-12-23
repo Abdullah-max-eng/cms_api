@@ -63,7 +63,7 @@ export class FeesController {
 
 
 
-  @Delete('/RP/:id')
+  @Delete('/CP/:id')
   removeAllFeeRecordsOnBasedOnCPID(@Param('id') id: string) {
     return this.feesService.removeAllBasedOnCPID(+id);
   }

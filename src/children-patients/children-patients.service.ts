@@ -36,6 +36,7 @@ export class ChildrenPatientsService {
         remarks: body.remarks,
         refferal: body.refferal,
         clinicID: body.clinicID,
+        diagnoses: body.diagnoses,
         DataEntrantID: body.DataEntrantID,      
     
       });
@@ -65,7 +66,7 @@ export class ChildrenPatientsService {
 
 
   async findOne(id: number) {
-    const aRecord = await this.ChildModel.findOne({where:{id:id}});
+    const aRecord = await this.ChildModel.scope('includeAssociations').findOne({where:{id:id}});
     if (!aRecord) {
       throw new NotFoundException(`Recrod with ID ${id} not found`);
     }else{
@@ -97,6 +98,7 @@ export class ChildrenPatientsService {
       remarks: body.remarks,
       refferal: body.refferal,
       clinicID: body.clinicID,
+      diagnoses: body.diagnoses,
       DataEntrantID: body.DataEntrantID,
     })
     return {status: true, updatedOne}    

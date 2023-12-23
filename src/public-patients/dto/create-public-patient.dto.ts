@@ -250,13 +250,6 @@ export class CreatePublicPatientDto {
 
 
 
-  // @ApiProperty({
-  //   description: 'Referral ID',
-  //   example: 3,
-  // })
-  // @IsNotEmpty()
-  // @IsNumber()
-  // RefferalID: number;
 
 
   @ApiProperty({

@@ -1,4 +1,4 @@
-import { Table, Model, ForeignKey, BelongsTo, Column, Default, HasMany } from "sequelize-typescript";
+import { Table, Model, ForeignKey, BelongsTo, Column, Default, HasMany, Scopes } from "sequelize-typescript";
 import { AgeGroup } from "src/age-group/entities/age-group.entity";
 import { Clinic } from "src/clinics/entities/clinic.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
@@ -8,8 +8,44 @@ import { ReasonToVisit } from "src/reason-to-visit/entities/reason-to-visit.enti
 import { Refferal } from "src/refferals/entities/refferal.entity";
 import { TestRecord } from "src/test-records/entities/test-record.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
+import { Vaccine } from "src/vaccines/entities/vaccine.entity";
+import { Drug } from "src/drugs/entities/drug.entity";
+import { TestResult } from "src/test-results/entities/test-result.entity";
 
 
+
+@Scopes(() => ({
+    includeAssociations: {
+      include: [
+        { model: Fee, attributes:['id','PayableFee', 'collectedFee'] },
+
+
+        {
+          model: TestRecord,
+          attributes:['id','testName'], 
+          include: [{ model: TestResult }],
+        
+        },
+        
+
+
+        { 
+          model: VaccinesHistory,
+          attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'], 
+          include: [{ model: Vaccine, attributes: ['id','name', 'type', 'doses'] }],
+
+        },
+
+
+
+        {
+          model: Medication,
+          attributes: [ 'startDate', 'endDate'],
+          include: [{ model: Drug }],
+        },
+      ],
+    },
+  }))
 
 @Table  
 export class ChildrenPatient extends Model {
@@ -106,6 +142,11 @@ export class ChildrenPatient extends Model {
 
     @Column({allowNull:false})
     servicesIntroduction: string;
+
+
+
+    @Column({allowNull:false})
+    diagnoses: string;
 
 
 

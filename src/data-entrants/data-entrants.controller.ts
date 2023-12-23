@@ -177,6 +177,7 @@ export class DataEntrantsController {
 
   @Patch('/changePass')
   changePassword(@Body() body: changePassDto, @GetCurrentUserID() userid: number) {
+    console.log(body, userid)
     return this.authService.changePassEntarant(body, userid);
   }
 
