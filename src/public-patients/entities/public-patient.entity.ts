@@ -9,13 +9,20 @@ import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.
 import { TestRecord } from "src/test-records/entities/test-record.entity";
 import { Drug } from "src/drugs/entities/drug.entity";
 import { Vaccine } from "src/vaccines/entities/vaccine.entity";
+import { TestResult } from "src/test-results/entities/test-result.entity";
 
 
 @Scopes(() => ({
     includeAssociations: {
       include: [
         { model: Fee, attributes:['id','PayableFee', 'collectedFee'] },
-        { model: TestRecord, attributes:['id','testName'] },
+        
+        {
+          model: TestRecord,
+          attributes:['id','testName'], 
+          include: [{ model: TestResult }],
+        
+        },
         
         { 
           model: VaccinesHistory,
@@ -161,7 +168,7 @@ export class PublicPatient extends Model {
 
 
     @ForeignKey(() => Clinic)
-    @Column({ allowNull: false })
+    @Column({  allowNull: true })
     clinicID: number;
     @BelongsTo(() => Clinic)
     clinic: Clinic;
@@ -171,7 +178,7 @@ export class PublicPatient extends Model {
 
 
     @ForeignKey(() => DataEntrant)
-    @Column({ allowNull: false })
+    @Column({  allowNull: true })
     DataEntrantID: number;
     @BelongsTo(() => DataEntrant)
     DataEntrant: DataEntrant;

@@ -170,7 +170,7 @@ export class ChildrenPatient extends Model {
 
 
     @ForeignKey(() => Clinic)
-    @Column({ allowNull: false })
+    @Column({ allowNull: true })
     clinicID: number;
     @BelongsTo(() => Clinic)
     clinic: Clinic;
@@ -180,7 +180,7 @@ export class ChildrenPatient extends Model {
 
 
     @ForeignKey(() => DataEntrant)
-    @Column({ allowNull: false })
+    @Column({ allowNull: true })
     DataEntrantID: number;
     @BelongsTo(() => DataEntrant)
     DataEntrant: DataEntrant;

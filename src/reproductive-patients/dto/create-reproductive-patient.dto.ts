@@ -161,13 +161,13 @@ export class CreateReproductivePatientDto {
 
 
     
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   clinicID: number;
 
 
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   DataEntrantID: number;
 

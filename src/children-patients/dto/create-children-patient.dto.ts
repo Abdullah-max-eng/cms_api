@@ -200,7 +200,7 @@ export class CreateChildrenPatientDto {
     description: 'Clinic ID',
     example: 4,
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   clinicID: number;
 
@@ -212,7 +212,7 @@ export class CreateChildrenPatientDto {
     description: 'Data Entrant ID',
     example: 5,
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   DataEntrantID: number;
 

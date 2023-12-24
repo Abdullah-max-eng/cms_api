@@ -10,6 +10,7 @@ import { Refferal } from "src/refferals/entities/refferal.entity";
 import { TestRecord } from "src/test-records/entities/test-record.entity";
 import { VaccinesHistory } from "src/vaccines-history/entities/vaccines-history.entity";
 import { Vaccine } from "src/vaccines/entities/vaccine.entity";
+import { TestResult } from "src/test-results/entities/test-result.entity";
 
 
 
@@ -17,14 +18,26 @@ import { Vaccine } from "src/vaccines/entities/vaccine.entity";
   includeAssociations: {
     include: [
       { model: Fee, attributes:['id','PayableFee', 'collectedFee'] },
-      { model: TestRecord, attributes:['id','testName'] },
+     
+     
+      {
+        model: TestRecord,
+        attributes:['id','testName'], 
+        include: [{ model: TestResult }],
       
+      },      
+
+
+
       { 
         model: VaccinesHistory,
         attributes:['vaccineId', 'firstDoseDate', 'numberOfTakenDoses', 'vaccinationStatus','comments','vaccineId'], 
         include: [{ model: Vaccine, attributes: ['id','name', 'type', 'doses'] }],
 
       },
+
+
+
       {
         model: Medication,
         attributes: [ 'startDate', 'endDate'],
@@ -174,7 +187,7 @@ export class ReproductivePatient extends Model {
 
 
             @ForeignKey(() => Clinic)
-            @Column({ allowNull: false })
+            @Column({ allowNull: true })
             clinicID: number;
             @BelongsTo(() => Clinic)
             clinic: Clinic;
@@ -184,7 +197,7 @@ export class ReproductivePatient extends Model {
 
 
             @ForeignKey(() => DataEntrant)
-            @Column({ allowNull: false })
+            @Column({ allowNull: true })
             DataEntrantID: number;
             @BelongsTo(() => DataEntrant)
             DataEntrant: DataEntrant;
