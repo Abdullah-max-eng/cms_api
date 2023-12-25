@@ -82,6 +82,7 @@ export class ReproductivePatientsService {
 
 
 
+
           async update(id: number, body: UpdateReproductivePatientDto) {
               const getRecord = await this.findOne(id)
               const updatedOne = await getRecord.update({
@@ -93,7 +94,7 @@ export class ReproductivePatientsService {
                 Weight: body.Weight,
                 BMI: await calculateBMI(body.Weight,body.Height),
                 MaritalStatus: body.MaritalStatus,
-                NumberOfChildrebt: body.NumberOfChildren,
+                NumberOfChildren: body.NumberOfChildren,
                 PreviouseAbortions: body.PreviouseAbortions,
                 DateOfLastBirth: body.DateOfLastBirth,
                 NormalBirthStatus: body.NormalBirthStatus,
