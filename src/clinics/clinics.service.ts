@@ -3,6 +3,7 @@ import { CreateClinicDto } from './dto/create-clinic.dto';
 import { UpdateClinicDto } from './dto/update-clinic.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Clinic } from './entities/clinic.entity';
+import { where } from 'sequelize';
 
 @Injectable()
 export class ClinicsService {
@@ -17,8 +18,8 @@ export class ClinicsService {
       async create(body: CreateClinicDto) {
         const clinicName = body.clinicName;
         const cityId = body.cityId;
-        const cityCreated = await this.ClinicModle.create({clinicName:clinicName,cityId:cityId})
-          return {status: true, cityCreated};
+        const clinicCreated = await this.ClinicModle.create({clinicName:clinicName,cityId:cityId})
+          return {status: true, clinicCreated};
       }
 
 
@@ -37,7 +38,7 @@ export class ClinicsService {
     
 
       async findOne(id:number){
-        const clinic  =await  this.ClinicModle.scope({method:["finOne", id]}).findOne()
+        const clinic  =await  this.ClinicModle.scope('withAssociations').findOne({ where: { id } })
         if(clinic){
           return clinic
         }else{

@@ -5,8 +5,7 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString, IsStrongPassword } from "cla
 
 export class changePassDto {
 
-    @IsString()
-    currentPassword: string
+
 
     
     // @IsStrongPassword()

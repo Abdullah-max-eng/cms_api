@@ -27,6 +27,8 @@ export class CitiesService {
 
 
 
+ 
+ 
   async checkifCityExists(cityname:string, countryname: string){
     const city  = await this.CityModel.scope({method:["checkifExists", cityname, countryname]}).findOne()
     if(city){
@@ -44,7 +46,7 @@ export class CitiesService {
     const countyname = body.countryName
     const exist =  await this.checkifCityExists(cityName, countyname);
     if(exist){
-      return "City Already exsits in the system"
+      throw  new Error("Already Exist")
     }else{
       const cityCreated = await this.CityModel.create({cityName:cityName,country:countyname})
       return {status: true, cityCreated};

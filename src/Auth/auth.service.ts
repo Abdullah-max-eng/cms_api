@@ -117,21 +117,13 @@ export class AuthService{
     async changePassAdmin(body: changePassDto, currentUserID: number) {
         const user = await this.adminServices.getOne(currentUserID);
         if (user) {
-          const currentHashedPassInDB = user.dataValues.password;
-          const match = await this.compareHashes(body.currentPassword, currentHashedPassInDB);
-      
-          if (match) {
             const newPasswordHash = await this.hashData(body.newPassword);
-      
             await this.adminServices.updatePass(currentUserID, {
-              newPassword: newPasswordHash,
-              currentPassword: currentHashedPassInDB,
+              newPassword: newPasswordHash
+           
             });
       
-            return { message: "Password Updated" };
-          } else {
-            return { message: false };
-          }
+            return { message: true };
         } else {
           throw new NotFoundException("User doesn't exist!");
         }
@@ -263,21 +255,18 @@ export class AuthService{
       const user = await this.dataEntrantService.getOne(currentUserID);
  
       if (user) {
-          const currentHashedPassInDB = user.dataValues.password;
-          const match = await this.compareHashes(body.currentPassword, currentHashedPassInDB);
-      
-          if (match) {
             const newPasswordHash = await this.hashData(body.newPassword);
       
             await this.dataEntrantService.updatePass(currentUserID, {
-              newPassword: newPasswordHash,
-              currentPassword: currentHashedPassInDB,
+              newPassword: newPasswordHash
+
             });
       
-            return { message: "Password Updated" };
-          } else {
-            return { message: false };
-          }
+            return { message: true };
+        
+
+
+
         } else {
           throw new NotFoundException("User doesn't exist!");
         }
