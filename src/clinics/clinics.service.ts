@@ -82,7 +82,7 @@ export class ClinicsService {
 
 
       async getOne(id:number){
-        const clinic  = await this.ClinicModle.scope({method:["finOne", id]}).findOne()
+        const clinic  = await this.ClinicModle.findOne({where:{id:id}})
         if(clinic){
           return clinic
         }else{

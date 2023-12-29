@@ -70,7 +70,7 @@ export class AdminsService {
 
 
   async findOne(id: number) {
-    const exsitingOne = await this.AdminModel.scope({method:['findOne', id]}).findOne();
+    const exsitingOne = await this.AdminModel.scope('passExcluded').findOne({where:{id:id}});
     if(!exsitingOne){
       throw new NotFoundException("No Admin Found with this ID");
     }else{

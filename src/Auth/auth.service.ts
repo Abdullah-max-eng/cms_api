@@ -77,6 +77,9 @@ export class AuthService{
       }
 
 
+
+
+
       
     async refreshAdmin(userId: number, rt: string) {
         console.log(userId,rt)
@@ -100,8 +103,6 @@ export class AuthService{
 
       
     async updateSelfAdmin(body: UpdateAdminDto , currentUserID: number) {
-        // console.log("----------------------> BODY", body);
-        // console.log("++++++++++++++++++++=+> CURRENT ID", currentUserID);
         await this.adminServices.update(currentUserID,{
             username: body.username,
             email: body.email,
@@ -132,6 +133,10 @@ export class AuthService{
 
 
 
+
+
+
+       
     async updateRtHashAdmin(id: number, rt: string){
         const hashedRT = await this.hashData(rt);
         await this.adminServices.update(id,{

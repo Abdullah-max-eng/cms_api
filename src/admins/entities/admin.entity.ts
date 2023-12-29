@@ -3,7 +3,7 @@ import { AfterCreate, AfterDestroy, Column, Model, Scopes, Table} from "sequeliz
 
 @Scopes(()=>({
     findOne: (id:number) => ({where:{id:id}}),
-    passExcluded: { attributes: { exclude: ["password", "Hashedrt"] } },
+    passExcluded: { attributes: { exclude: ["password", "Hashedrt",'createdAt', 'updatedAt'] } },
     
 }))
 
