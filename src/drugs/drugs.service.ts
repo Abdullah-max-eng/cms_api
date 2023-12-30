@@ -90,7 +90,7 @@ export class DrugsService {
 
 
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number) {
     try {
       const deletedRows = await this.DrugsModel.destroy({ where: { id } });
       if (deletedRows === 0) {
