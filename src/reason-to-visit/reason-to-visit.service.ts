@@ -68,6 +68,9 @@ export class ReasonToVisitService {
 
 
 
+
+
+
   async remove(id: number) {
     try {
       const deletedRows = await this.reasonToVisitModel.destroy({ where: { id } });
@@ -75,7 +78,14 @@ export class ReasonToVisitService {
         throw new NotFoundException(`Record with ID ${id} not found`);
       }
     } catch (error) {
-      throw new InternalServerErrorException('Failed to delete the record');
+
+      const recrodToBeDelted  = await this.reasonToVisitModel.scope('includeAssociations').findByPk(id)
+      const PPs = recrodToBeDelted.PPs
+      const CPs = recrodToBeDelted.CPs
+      const RPs = recrodToBeDelted.RPs
+
+      return {PPs,CPs,RPs}
+      
     }
   
   }

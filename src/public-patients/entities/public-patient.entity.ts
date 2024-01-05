@@ -118,11 +118,17 @@ export class PublicPatient extends Model {
 
 
 
+
+
+
     @ForeignKey(() => ReasonToVisit)
     @Column({ allowNull: false })
     VisitReasonID: number;
     @BelongsTo(() => ReasonToVisit)
     VisitReason: ReasonToVisit;
+
+
+    
 
 
     

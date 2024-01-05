@@ -27,6 +27,7 @@ import { DiagnosesModule } from './diagnoses/diagnoses.module';
 import { TypesOfTestsModule } from './types-of-tests/types-of-tests.module';
 import { TestRecordsModule } from './test-records/test-records.module';
 import { TestResultsModule } from './test-results/test-results.module';
+import { AttributesLanModule } from './attributes-lan/attributes-lan.module';
 
 @Module({
   imports: [
@@ -86,6 +87,7 @@ import { TestResultsModule } from './test-results/test-results.module';
     TypesOfTestsModule,
     TestRecordsModule,
     TestResultsModule,
+    AttributesLanModule,
 
 
 
