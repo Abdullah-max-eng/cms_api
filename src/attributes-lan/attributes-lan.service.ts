@@ -17,32 +17,20 @@ export class AttributesLanService {
 
 
   async create(body: CreateAttributesLanDto) {
-    
-    try{
-      const createdRecord = await this.LanguageModel.create(
-        {
- 
-
-            name:body.name 
-
-
-
-
-
-
-        }
-      );
-
-      return createdRecord
-
-
-    }catch(error){
-      console.log(error)
+    try {
+      const createdRecord = await this.LanguageModel.create(body as any);
+      return createdRecord;
+    } catch (error) {
+      console.error(error);
+      throw error; // Rethrow the error to be caught by the calling function or middleware
     }
-   
-
-
   }
+
+
+
+
+
+
 
 
 
@@ -58,28 +46,19 @@ async findOne(id: number) {
 
 
 
-async update(id: number, body: UpdateAttributesLanDto) {
-    const recordToBeUpdated = await this.findOne(id);
-    const updated = await recordToBeUpdated.update(
 
-        {
   
 
-          name:body.name 
+  async update(id: number, body: UpdateAttributesLanDto) {
+    const recordToBeUpdated = await this.findOne(id);
 
-
-
-
-
-
-      }
-
-
-      
-
-    )
-
-    return updated
+    try {
+      const updated = await recordToBeUpdated.update(body as any);
+      return updated;
+    } catch (error) {
+      console.error(error);
+      throw error; // Rethrow the error to be caught by the calling function or middleware
+    }
   }
 
 

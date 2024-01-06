@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AttributesLanService } from './attributes-lan.service';
 import { CreateAttributesLanDto } from './dto/create-attributes-lan.dto';
 import { UpdateAttributesLanDto } from './dto/update-attributes-lan.dto';
+import { Public } from 'src/common/decorators/public.decorators';
 
 @Controller('attributes-lan')
 export class AttributesLanController {
@@ -9,6 +10,8 @@ export class AttributesLanController {
 
 
 
+
+  
   @Post()
   create(@Body() createAttributesLanDto: CreateAttributesLanDto) {
     return this.attributesLanService.create(createAttributesLanDto);
@@ -19,7 +22,7 @@ export class AttributesLanController {
 
 
 
-
+  @Public(true)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.attributesLanService.findOne(+id);
