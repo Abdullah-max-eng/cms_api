@@ -21,6 +21,14 @@ export class CreateReproductivePatientDto {
   @IsString()
   address: string;
 
+
+
+  @IsNotEmpty()
+  @IsString()
+  nationality: string;
+
+
+  
  
  
   @IsNotEmpty()

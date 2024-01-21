@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default, Scopes } from "sequelize-typescript";
+import { Table, Model, Column, ForeignKey, BelongsTo, HasMany, Default, Scopes, DataType } from "sequelize-typescript";
 import { Clinic } from "src/clinics/entities/clinic.entity";
 import { DataEntrant } from "src/data-entrants/entities/data-entrant.entity";
 import { Fee } from "src/fees/entities/fee.entity";
@@ -47,9 +47,10 @@ export class PublicPatient extends Model {
     
 
     
-    @Default(() => new Date().toISOString().split('T')[0]) // Default to today's date
-    @Column({allowNull:false})
-    visitDate: string
+  @Default(() => new Date()) // Default to today's date
+  @Column({ allowNull: false, type: DataType.DATEONLY })
+  visitDate: Date;
+  
 
 
     @Column({allowNull:false})

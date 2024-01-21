@@ -31,15 +31,9 @@ import { AttributesLanModule } from './attributes-lan/attributes-lan.module';
 
 @Module({
   imports: [
-
-
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-
-
-
-
 
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
@@ -60,10 +54,6 @@ import { AttributesLanModule } from './attributes-lan/attributes-lan.module';
       }),
       inject: [ConfigService],
     }),
-
-
-
-
 
     AdminsModule,
     CitiesModule,
@@ -88,28 +78,15 @@ import { AttributesLanModule } from './attributes-lan/attributes-lan.module';
     TestRecordsModule,
     TestResultsModule,
     AttributesLanModule,
-
-
-
-
-
-
-
-
-
-
-
   ],
 
-  
   controllers: [AppController],
-  providers: [AppService,    
+  providers: [
+    AppService,
     {
-    provide: APP_GUARD,
-    useClass: AtGuard,
-    
+      provide: APP_GUARD,
+      useClass: AtGuard,
     },
-  
   ],
 })
 export class AppModule {}

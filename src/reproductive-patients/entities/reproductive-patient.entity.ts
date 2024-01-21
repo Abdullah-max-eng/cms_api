@@ -66,6 +66,13 @@ export class ReproductivePatient extends Model {
         @Column({allowNull:false})
         address: string
 
+        @Column({allowNull:false})
+        nationality: string
+
+
+        @Column({ allowNull: false, defaultValue: 'Female' })
+        sex: string;
+
 
         @Column({allowNull:false})
         DOB: string

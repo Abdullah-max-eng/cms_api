@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { PublicPatientsService } from './public-patients.service';
 import { CreatePublicPatientDto } from './dto/create-public-patient.dto';
 import { UpdatePublicPatientDto } from './dto/update-public-patient.dto';
@@ -19,6 +19,12 @@ export class PublicPatientsController {
         }
 
 
+
+
+        
+
+
+        
         
         @Get('/GetTodaysPatiets')
         getTodaysPatient() {
@@ -46,6 +52,14 @@ export class PublicPatientsController {
         remove(@Param('id') id: string) {
           return this.publicPatientsService.remove(+id);
         }
+
+
+
+
+
+
+
+
 
 
 
