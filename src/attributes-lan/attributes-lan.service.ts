@@ -3,6 +3,7 @@ import { CreateAttributesLanDto } from './dto/create-attributes-lan.dto';
 import { UpdateAttributesLanDto } from './dto/update-attributes-lan.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { AttributesLan } from './entities/attributes-lan.entity';
+import { where } from 'sequelize';
 
 
 
@@ -44,6 +45,34 @@ async findOne(id: number) {
   }
 
 
+
+
+
+  async findOneByPrfix(prefix: string) {
+    try {
+      const fetchedOne = await this.LanguageModel.findOne({ where: { prefix: prefix } });
+      return fetchedOne;
+    } catch (error) {
+      // Handle the error (log it, throw a custom error, etc.)
+      console.error(error);
+      throw new Error('An error occurred while fetching data.');
+    }
+  }
+
+
+
+  async getAllPrefixes() {
+    try {
+      const allRecords = await this.LanguageModel.findAll({ attributes: ['prefix'] });
+      return allRecords.map(record => record.prefix);
+    } catch (error) {
+      // Handle the error (log it, throw a custom error, etc.)
+      console.error(error);
+      throw new Error('An error occurred while fetching data.');
+    }
+  }
+  
+  
 
 
 

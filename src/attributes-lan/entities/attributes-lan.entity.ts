@@ -10,6 +10,13 @@ export class AttributesLan extends Model {
 
 
 
+
+    @Column({allowNull:false})
+    prefix: string
+
+
+
+    
     @Column({allowNull:false})
     LoginTitle: string
 
