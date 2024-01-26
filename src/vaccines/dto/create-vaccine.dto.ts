@@ -5,11 +5,11 @@ export class CreateVaccineDto {
   @IsString()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   type: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   doses: number;
 

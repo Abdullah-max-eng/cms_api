@@ -5,10 +5,10 @@ export class Vaccine extends Model {
   @Column({ allowNull: false })
   name: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   type: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   doses: number;
 
 
