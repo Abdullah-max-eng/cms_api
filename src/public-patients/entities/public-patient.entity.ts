@@ -71,9 +71,6 @@ export class PublicPatient extends Model {
     
 
 
-
-        
-
     @Column({allowNull:false})
     ageGroup: string
 

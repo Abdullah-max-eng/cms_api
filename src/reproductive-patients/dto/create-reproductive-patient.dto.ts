@@ -37,6 +37,18 @@ export class CreateReproductivePatientDto {
 
 
 
+  @IsNotEmpty()
+  @IsString()
+  disability: string
+
+
+
+  @IsNotEmpty()
+  @IsString()
+  reasonOfDisability: string
+
+
+
 
   @IsNotEmpty()
   @IsString()
@@ -68,6 +80,14 @@ export class CreateReproductivePatientDto {
 
 
 
+
+  
+  @IsNotEmpty()
+  @IsNumber()
+  PreviouseSB: number;
+
+
+
   @IsNotEmpty()
   @IsString()
   DateOfLastBirth: string;
@@ -81,8 +101,8 @@ export class CreateReproductivePatientDto {
 
 
   @IsNotEmpty()
-  @IsBoolean()
-  NormalBirthStatus: false;
+  @IsString()
+  NormalBirthStatus: string;
 
 
 
@@ -100,9 +120,6 @@ export class CreateReproductivePatientDto {
 
 
 
-  @IsNotEmpty()
-  @IsString()
-  IronInspection: string;
 
 
 

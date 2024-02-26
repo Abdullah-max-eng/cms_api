@@ -21,6 +21,13 @@ export class CreateAttributesLanDto {
   @IsNotEmpty()
   ReproductivePatients: string;
 
+
+  
+  @IsString()
+  @IsNotEmpty()
+  PSB: string;
+
+
   @IsString()
   @IsNotEmpty()
   ChildrenPatients: string;

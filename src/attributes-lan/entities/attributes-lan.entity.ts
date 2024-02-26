@@ -44,6 +44,11 @@ export class AttributesLan extends Model {
     ChildrenPatients: string
 
 
+    
+    @Column({allowNull:false})
+    PSB: string
+
+
 
 
         

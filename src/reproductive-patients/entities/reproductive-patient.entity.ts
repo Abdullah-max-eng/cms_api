@@ -91,6 +91,17 @@ export class ReproductivePatient extends Model {
         BMI:  string
 
 
+
+        
+        @Column({allowNull:false})
+        disability: string
+    
+    
+    
+        @Column({allowNull:false})
+        reasonOfDisability: string
+
+
         
         @Column({allowNull:false})
         MaritalStatus:  string
@@ -105,11 +116,15 @@ export class ReproductivePatient extends Model {
 
 
         @Column({allowNull:false})
+        PreviouseSB:  number
+
+
+        @Column({allowNull:false})
         DateOfLastBirth:  string
 
 
         @Column({allowNull:false})
-        NormalBirthStatus:  boolean
+        NormalBirthStatus:  string
 
 
         @Column({allowNull:false})
@@ -130,8 +145,6 @@ export class ReproductivePatient extends Model {
 
 
 
-        @Column({allowNull:false})
-        IronInspection: string
 
 
 

@@ -116,7 +116,6 @@ export class PublicPatientsService {
     const todaysDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     const AllRecords = await this.PublicPModle.findAll({where:{visitDate:todaysDate}});
     return AllRecords
-
   }
 
 

@@ -61,6 +61,9 @@ async findOne(id: number) {
 
 
 
+
+
+  
   async getAllPrefixes() {
     try {
       const allRecords = await this.LanguageModel.findAll({ attributes: ['prefix'] });

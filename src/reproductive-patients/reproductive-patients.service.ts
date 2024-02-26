@@ -24,12 +24,14 @@ export class ReproductivePatientsService {
                   MaritalStatus: body.MaritalStatus,
                   NumberOfChildren: body.NumberOfChildren,
                   PreviouseAbortions: body.PreviouseAbortions,
+                  PreviouseSB: body.PreviouseSB,
                   nationality: body.nationality,
+                  disability: body.disability,
+                  reasonOfDisability: body.reasonOfDisability,
                   DateOfLastBirth: body.DateOfLastBirth,
                   NormalBirthStatus: body.NormalBirthStatus,
                   DateOfLastMenstruation: body.DateOfLastMenstruation,
                   contraceptives: body.contraceptives,
-                  IronInspection: body.IronInspection,
                   DiabetesScreening: body.DiabetesScreening,
                   BloodPressure: body.BloodPressure,
                   physicianName: body.physicianName,
@@ -102,9 +104,10 @@ export class ReproductivePatientsService {
                 NormalBirthStatus: body.NormalBirthStatus,
                 DateOfLastMenstruation: body.DateOfLastMenstruation,
                 contraceptives: body.contraceptives,
-                IronInspection: body.IronInspection,
                 DiabetesScreening: body.DiabetesScreening,
                 BloodPressure: body.BloodPressure,
+                disability: body.disability,
+                reasonOfDisability: body.reasonOfDisability,
                 physicianName: body.physicianName,
                 ageGroup: body.ageGroup,
                 VisitReasonID: body.VisitReasonID,
@@ -142,7 +145,6 @@ export class ReproductivePatientsService {
             const todaysDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
             const AllRecords = await this.RPModel.findAll({where:{visitDate:todaysDate}});
             return AllRecords
-        
           }
         
 
