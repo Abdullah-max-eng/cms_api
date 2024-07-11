@@ -89,4 +89,4 @@ import { AttributesLanModule } from './attributes-lan/attributes-lan.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

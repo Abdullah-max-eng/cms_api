@@ -100,6 +100,7 @@ export class ReproductivePatientsService {
                 NumberOfChildren: body.NumberOfChildren,
                 nationality: body.nationality,
                 PreviouseAbortions: body.PreviouseAbortions,
+                PreviouseSB: body.PreviouseSB,
                 DateOfLastBirth: body.DateOfLastBirth,
                 NormalBirthStatus: body.NormalBirthStatus,
                 DateOfLastMenstruation: body.DateOfLastMenstruation,

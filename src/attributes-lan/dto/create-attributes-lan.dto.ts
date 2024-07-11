@@ -140,9 +140,12 @@ export class CreateAttributesLanDto {
   @IsNotEmpty()
   Contraceptives: string;
 
-  @IsString()
-  @IsNotEmpty()
-  IronInspection: string;
+
+
+
+
+
+
 
   @IsString()
   @IsNotEmpty()

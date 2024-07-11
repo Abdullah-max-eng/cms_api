@@ -202,10 +202,6 @@ export class AttributesLan extends Model {
 
 
 
-    @Column({allowNull:false})
-    IronInspection: string
-
-
 
     @Column({allowNull:false})
     PatientManagementPortal: string

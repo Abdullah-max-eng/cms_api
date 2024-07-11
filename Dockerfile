@@ -1,16 +1,21 @@
-FROM node:18:alpine
-WORKDIR api/src/app
+FROM node:22-alpine3.19
 
 
-COPY package*.json ./
 
+WORKDIR /app
+
+
+
+COPY package.json  .
 RUN npm install
 
-COPY . . 
 
+
+COPY .  /app/ 
 RUN npm run build
 
 
 
-EXPOSE 3000
-CMD ["node", "dist/main.js"]
+
+
+CMD ["node", "dist/src/main.js"]
